@@ -1,0 +1,63 @@
+unit Triangle_U;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrmTriangle = class(TForm)
+    btnStart: TButton;
+    lblWindow: TLabel;
+    tNewPoint: TTimer;
+    procedure btnStartClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmTriangle: TfrmTriangle;
+  iPyrHeight, iPyrWidth, iRandomHeight, C : Integer;
+  ArrPoints : Array[1..3, 1..2] of Integer;
+  MidPoint : TPoint;
+  M : Real;
+implementation
+
+{$R *.dfm}
+
+procedure TfrmTriangle.btnStartClick(Sender: TObject);
+begin
+  btnStart.Visible := False;
+  lblWindow.Visible := False;
+
+  iPyrHeight := 500;
+  iPyrWidth := 1000;
+
+  ArrPoints[1,1] := (frmTriangle.Height div 2) - (iPyrHeight div 2);
+  ArrPoints[1,2] := frmTriangle.Width div 2;
+
+  ArrPoints[2,1] := (frmTriangle.Height div 2) + (iPyrHeight div 2);
+  ArrPoints[2,2] := (frmTriangle.Width div 2) + (iPyrWidth div 2);
+
+  ArrPoints[3,1] := (frmTriangle.Height div 2) + (iPyrHeight div 2);
+  ArrPoints[3,2] := (frmTriangle.Width div 2) - (iPyrWidth div 2);
+
+  Canvas.Create;
+  Canvas.MoveTo(ArrPoints[1,2], ArrPoints[1,1]);
+  Canvas.LineTo(ArrPoints[2,2], ArrPoints[2,1]);
+  Canvas.LineTo(ArrPoints[3,2], ArrPoints[3,1]);
+  Canvas.LineTo(ArrPoints[1,2], ArrPoints[1,1]);
+
+  iRandomHeight := Random(iPyrHeight);
+
+  M := (ArrPoints[1,1] - ArrPoints[2,1]) / (ArrPoints[1,2] - ArrPoints[2,2]);
+
+  ShowMessage(FloatToStr(M));
+
+  MidPoint.Y := iRandomHeight;
+end;
+
+end.
