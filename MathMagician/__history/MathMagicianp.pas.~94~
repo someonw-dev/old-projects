@@ -1,0 +1,2027 @@
+unit MathMagicianp;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Imaging.pngimage, Vcl.Imaging.jpeg, System.ImageList, Vcl.ImgList,
+  Vcl.BaseImageCollection, Vcl.ImageCollection, Vcl.VirtualImageList, System.Math,
+  Vcl.MPlayer, Vcl.Samples.Spin;
+
+type
+  TfrmMathMagician = class(TForm)
+    pgcGame: TPageControl;
+    tabLogin: TTabSheet;
+    tabCharacter: TTabSheet;
+    tabGame: TTabSheet;
+    btnLogin: TButton;
+    edtPassword: TEdit;
+    edtUser: TEdit;
+    lblUsername: TLabel;
+    lblPassword: TLabel;
+    imgHeadPreview: TImage;
+    imgTorsoPreview: TImage;
+    btnConfirmCharacter: TButton;
+    imgLeggingsPreview: TImage;
+    CMBLeggings: TComboBox;
+    lblLoginInfo: TLabel;
+    CMBTorso: TComboBox;
+    CMBHead: TComboBox;
+    btnPathThree: TButton;
+    imgMonster: TImage;
+    btnPathOne: TButton;
+    btnPathTwo: TButton;
+    redPathOne: TRichEdit;
+    redPathTwo: TRichEdit;
+    redPathThree: TRichEdit;
+    tabScore: TTabSheet;
+    grpLogin: TGroupBox;
+    imgLeggings: TImage;
+    imgTorso: TImage;
+    imgHead: TImage;
+    imgNone: TImage;
+    imgFace: TImage;
+    imgPlusMonster: TImage;
+    btnEasyQuestion: TButton;
+    lblEasyQuestion: TLabel;
+    btnMediumQuestion: TButton;
+    btnHardQuestion: TButton;
+    lblMediumQuestion: TLabel;
+    lblHardQuestion: TLabel;
+    lblMonsterHP: TLabel;
+    lblMonsterDMG: TLabel;
+    imgHealth: TImage;
+    imgSword: TImage;
+    imgUserHeart: TImage;
+    imgUserSword: TImage;
+    lblUserHP: TLabel;
+    lblUserDMG: TLabel;
+    lblMonsterDeathText: TLabel;
+    grpRegister: TGroupBox;
+    lblRegisterUsername: TLabel;
+    lblRegisterPassword: TLabel;
+    edtRegisterUsername: TEdit;
+    edtRegisterPassword: TEdit;
+    btnRegisterAccount: TButton;
+    chkShowPasswordLogin: TCheckBox;
+    chkShowPasswordRegister: TCheckBox;
+    lblRegisterInfo: TLabel;
+    imgPotion: TImage;
+    imgJeff: TImage;
+    imgCharacterBackground: TImage;
+    speEnemies: TSpinEdit;
+    imgGameBackground: TImage;
+    lblTutorial1: TLabel;
+    lblTutorial2: TLabel;
+    lblTutorial3: TLabel;
+    lblTutorial5: TLabel;
+    lblTutorial6: TLabel;
+    lblTutorial4: TLabel;
+    imgScoreBackground: TImage;
+    imgLoginScreenBackground: TImage;
+    imgTitleCard: TImage;
+    imgEscapeGameButton: TImage;
+    imgEscapeLoginBtn: TImage;
+    imgEscapeCharacterBtn: TImage;
+    imgEscapeScoreBtn: TImage;
+    lblCharacterTitle: TLabel;
+    lblSelectEquationsTitle: TLabel;
+    lblEquationsInfo1: TLabel;
+    lblEquationsInfo2: TLabel;
+    mpAmbience: TMediaPlayer;
+    tabSettings: TTabSheet;
+    imgSettingsBackground: TImage;
+    imgEscapeButton: TImage;
+    lblSoundSettings: TLabel;
+    lblFontSettings: TLabel;
+    imgSettingsButton: TImage;
+    Button1: TButton;
+    grpSoundSettings: TGroupBox;
+    chkMusic: TCheckBox;
+    grpDisplaySettings: TGroupBox;
+    chkEnableBorder: TCheckBox;
+    chkSoundEffects: TCheckBox;
+    cmbCurrentSong: TComboBox;
+    cmbBossfightSong: TComboBox;
+    imgSettingsCharacter: TImage;
+    imgSettingsGame: TImage;
+    imgSettingsScore: TImage;
+    lblPotionCount: TLabel;
+    lblSoundInfo1: TLabel;
+    lblSoundInfo2: TLabel;
+    mpSoundEffects: TMediaPlayer;
+    imgVictoryOrDefeat: TImage;
+    tRepeatMusic: TTimer;
+    btnPlayAgain: TButton;
+    lblScore: TLabel;
+    procedure btnLoginClick(Sender: TObject);
+    procedure btnConfirmCharacterClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
+    procedure CMBHeadSelect(Sender: TObject);
+    procedure CMBTorsoSelect(Sender: TObject);
+    procedure CMBLeggingsSelect(Sender: TObject);
+    procedure btnPathOneClick(Sender: TObject);
+    procedure btnPathTwoClick(Sender: TObject);
+    procedure btnPathThreeClick(Sender: TObject);
+    procedure btnEasyQuestionClick(Sender: TObject);
+    procedure btnMediumQuestionClick(Sender: TObject);
+    procedure btnHardQuestionClick(Sender: TObject);
+    procedure btnLoginMouseEnter(Sender: TObject);
+    procedure btnLoginMouseLeave(Sender: TObject);
+    procedure btnConfirmCharacterMouseEnter(Sender: TObject);
+    procedure btnConfirmCharacterMouseLeave(Sender: TObject);
+    procedure btnPathOneMouseEnter(Sender: TObject);
+    procedure btnPathOneMouseLeave(Sender: TObject);
+    procedure btnPathTwoMouseEnter(Sender: TObject);
+    procedure btnPathTwoMouseLeave(Sender: TObject);
+    procedure btnPathThreeMouseEnter(Sender: TObject);
+    procedure btnPathThreeMouseLeave(Sender: TObject);
+    procedure btnEasyQuestionMouseEnter(Sender: TObject);
+    procedure btnEasyQuestionMouseLeave(Sender: TObject);
+    procedure btnMediumQuestionMouseLeave(Sender: TObject);
+    procedure btnMediumQuestionMouseEnter(Sender: TObject);
+    procedure btnHardQuestionMouseEnter(Sender: TObject);
+    procedure btnHardQuestionMouseLeave(Sender: TObject);
+    procedure btnRegisterAccountClick(Sender: TObject);
+    procedure chkShowPasswordLoginClick(Sender: TObject);
+    procedure chkShowPasswordRegisterClick(Sender: TObject);
+    procedure btnRegisterAccountMouseEnter(Sender: TObject);
+    procedure btnRegisterAccountMouseLeave(Sender: TObject);
+    procedure imgEscapeButtonClick(Sender: TObject);
+    procedure imgSettingsButtonClick(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure chkMusicClick(Sender: TObject);
+    procedure imgPotionClick(Sender: TObject);
+    procedure cmbCurrentSongSelect(Sender: TObject);
+    procedure cmbBossfightSongSelect(Sender: TObject);
+    procedure chkEnableBorderClick(Sender: TObject);
+    procedure tRepeatMusicTimer(Sender: TObject);
+    procedure btnPlayAgainClick(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmMathMagician: TfrmMathMagician;
+  sUser, sPath : string;
+  iMonstersDefeated, E, iPreviousActivePageNumber, iPotionCount, iMonster, iEnemies  : Integer;
+  cSymbol, cQuestionDisplaySymbol : Char;
+  rUserHP, rUserDMG, rMonsterDMG, rMonsterHP, rScore : Real;
+  txtSavedAccounts : TextFile;
+  BossfightOrNot : Boolean = False;
+  //HP stands for health points and DP stands for damage points
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmMathMagician.btnLoginClick(Sender: TObject);
+var
+  bAccountFound : Boolean;
+  sUserInfo, sFileInfo : string;
+begin
+  AssignFile(txtSavedAccounts, 'UsersAndPasswords.txt');
+
+  Reset(txtSavedAccounts);
+
+  bAccountFound := False;
+  sUserInfo := edtUser.Text + '*' + edtPassword.Text;
+
+  //While not the end of the textfile do this.
+  while not Eof(txtSavedAccounts) do
+    begin
+      Readln(txtSavedAccounts, sFileInfo);
+
+      if sFileInfo = sUserInfo then
+        begin
+         ShowMessage('Welcome ' + edtUser.Text + '!');
+         bAccountFound := True;
+         pgcGame.ActivePageIndex := 1;
+         tabCharacter.Enabled := True;
+         tabLogin.Enabled := False;
+        end
+    end;
+
+  if bAccountFound = False then
+    ShowMessage('Wrong username or password please try again or register.');
+
+  CloseFile(txtSavedAccounts);
+end;
+
+procedure TfrmMathMagician.btnMediumQuestionClick(Sender: TObject);
+var
+  iNum1, iNum2, iUserAnswer, iAnswer, K, Y, T, L, X, U, iBossfight, iRandomSound : Integer;
+begin
+  Randomize;
+  iNum1 := RandomRange(10, 25) + 1;
+  iNum2 := RandomRange(10, 25) + 1;
+  iAnswer := 0;
+
+  case cSymbol of
+    '+' : begin
+            iAnswer := iNum1 + iNum2;
+            cQuestionDisplaySymbol := '+';
+          end;
+    '-' : begin
+            iAnswer := iNum1 - iNum2;
+            cQuestionDisplaySymbol := '-';
+          end;
+    'x' : begin
+            //This just makes the multiplication part a bit easier instead of having it be between 50 and 100
+            iNum1 := RandomRange(5, 10) + 1;
+            iNum2 := RandomRange(5, 10) + 1;
+
+            iAnswer := iNum1 * iNum2;
+            cQuestionDisplaySymbol := 'x';
+          end;
+    'B' : begin
+            Randomize;
+            iBossfight := Random(3) + 1;
+
+            case iBossfight of
+              1 : begin
+                    iAnswer := iNum1 + iNum2;
+                    cQuestionDisplaySymbol := '+';
+                  end;
+              2 : begin
+                    iAnswer := iNum1 - iNum2;
+                    cQuestionDisplaySymbol := '-';
+                  end;
+              3 : begin
+                    //This just makes multiplication in the bossfight easier
+                    iNum1 := RandomRange(5, 10) + 1;
+                    iNum2 := RandomRange(5, 10) + 1;
+
+                    iAnswer := iNum1 * iNum2;
+                    cQuestionDisplaySymbol := 'x';
+                  end;
+            end;
+          end;
+  end;
+
+  iUserAnswer := StrToInt(InputBox('Medium Question', IntToStr(iNum1) + ' ' + cQuestionDisplaySymbol + ' ' + IntToStr(iNum2), ''));
+
+
+  if iUserAnswer = iAnswer then
+    begin
+      ShowMessage('Correct!');
+      rMonsterHP := Ceil(rMonsterHP - (rUserDMG * 1.5));
+
+      //Random damage sound effect
+      iRandomSound := Random(3) + 1;
+
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.Close;
+          case cSymbol of
+            '+' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'TreathHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'TreathHit3.mp3';
+                  end;
+            '-' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                  end;
+            'x' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                  end;
+            'B' : case iMonster of
+                    1 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                            3 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                          end;
+                        end;
+                    2 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                            3 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                          end;
+                        end;
+                    3 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            3 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                          end;
+                        end;
+                  end;
+          end;
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end
+  else
+    begin
+      ShowMessage('Wrong answer!');
+      rUserHP := Ceil(rUserHP - (rMonsterDMG * 1.5));
+
+      //User damage sound effect
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.FileName := 'CharacterHit1.mp3';
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end;
+
+  if rMonsterHP <= 0 then
+    begin
+      if BossfightOrNot = True then
+        begin
+          ShowMessage('Congratulations you have won!');
+
+          tabGame.Enabled := False;
+          tabScore.Enabled := True;
+
+          imgVictoryOrDefeat.Picture.LoadFromFile('Victory.png');
+
+          pgcGame.ActivePageIndex := 3;
+
+          rScore := (rUserHP * 100) + (StrToFloat(lblPotionCount.Caption) * 50 * 100) + (iEnemies * 200);
+          lblScore.Caption := 'Score: ' + FloatToStr(rScore);
+        end
+      else
+        begin
+          //This is for the monster death animation
+          //Generates random Y movement
+          Y := RandomRange(-15, -5);
+          //K is for the loop length
+          K := 0;
+          //Generates random X movement
+          X := RandomRange(-10, 10);
+          //T and L values are to make sure that the starting position of the jump is always at the original location of the picture and not on a random location on the screen.
+          T := 361 - (Y * Y);
+          L := 472 - (Y * X);
+
+          while K < 40 do
+            begin
+              imgMonster.Top := T + (Y * Y);
+              imgMonster.Left := L + (Y * X);
+              imgMonster.Refresh;
+
+              lblMonsterDeathText.Caption := 'Noooo!';
+              lblMonsterDeathText.Top := imgMonster.Top - 30;
+              lblMonsterDeathText.Left := imgMonster.Left + 100;
+              imgMonster.Refresh;
+
+              Inc(Y);
+              inc(K);
+
+              Sleep(20);
+            end;
+
+          lblMonsterDeathText.Caption := '';
+
+          imgMonster.Top := 361;
+          imgMonster.Left := 472;
+
+          Inc(iMonstersDefeated);
+          cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+          Randomize;
+          //This gives random monster images
+          iMonster := Random(3) + 1;
+
+          case cSymbol of
+            '+' : begin
+                    rMonsterHP := 40;
+                    rMonsterDMG := 15;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+                      2 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+                      3 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+                    end;
+                  end;
+
+            '-' :  begin
+                    rMonsterHP := 60;
+                    rMonsterDMG := 10;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+                      2 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+                      3 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+                    end;
+                  end;
+
+            'x' : begin
+                    rMonsterHP := 30;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+                      2 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+                      3 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+                    end;
+                   end;
+
+            'B' : begin
+                    rMonsterHP := 80;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('Jeff.png');
+                      2 : imgMonster.Picture.LoadFromFile('Bloooob.png');
+                      3 : imgMonster.Picture.LoadFromFile('EiklerTheFireBorn.png');
+                    end;
+
+                    BossfightOrNot := True;
+
+                    //Allows you to change the bossfight song and disables normal song changes etc
+                    cmbBossfightSong.Enabled := True;
+                    cmbCurrentSong.Enabled := False;
+
+                    //This resets the timer and makes it select a new song but now its gonna be a bossfight song
+                    tRepeatMusic.Interval := 1;
+                  end;
+          end;
+
+          U := 0;
+
+          //This animates the monster moving toward the player
+          while U < 100 do
+            begin
+              imgMonster.Left := 572 - U;
+              imgMonster.Top := 461 - U;
+
+              imgMonster.Height := U * 2;
+              imgMonster.Width := U * 2;
+              imgMonster.Refresh;
+
+              Inc(U);
+
+              Sleep(10);
+            end;
+        end;
+    end;
+
+  if rUserHP <= 0 then
+    begin
+      ShowMessage('You have died!');
+      tabGame.Enabled := False;
+      tabScore.Enabled := True;
+      imgVictoryOrDefeat.Picture.LoadFromFile('Defeat.png');
+      pgcGame.ActivePageIndex := 3;
+    end;
+
+  lblUserHP.Caption := 'Health: ' + FloatToStr(rUserHP);
+  lblUserDMG.Caption := 'Damage: ' + FloatToStr(rUserDMG);
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+
+  lblTutorial2.Visible := False;
+  lblTutorial3.Visible := False;
+  lblTutorial4.Visible := False;
+  lblTutorial5.Visible := False;
+end;
+
+procedure TfrmMathMagician.btnPathOneClick(Sender: TObject);
+var
+  K, I, iMonster : Integer;
+begin
+  //Hides the other paths that the user did not choose. Code is repeated for the other 2 buttons
+  btnPathOne.Enabled := False;
+  btnPathOne.Visible := False;
+
+  redPathTwo.Enabled := False;
+  redPathTwo.Visible := False;
+  btnPathTwo.Enabled := False;
+  btnPathTwo.Visible := False;
+
+  redPathThree.Enabled := False;
+  redPathThree.Visible := False;
+  btnPathThree.Enabled := False;
+  btnPathThree.Visible := False;
+
+  iMonstersDefeated := 0;
+  sPath := redPathOne.Text;
+
+  cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+  //This is set to 2 because delphi starts at 0
+  iMonster := Random(2);
+
+  //This uses the path you chose to find what the question is supposed to be e.g. multiply or divide etc. This code is repeated for other buttons.
+  case cSymbol of
+    '+' :  begin
+             rMonsterHP := 40;
+             rMonsterDMG := 15;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+               1 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+               2 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+             end;
+           end;
+
+    '-' :  begin
+             rMonsterHP := 60;
+             rMonsterDMG := 10;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+               1 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+               2 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+             end;
+           end;
+
+    'x' :  begin
+             rMonsterHP := 30;
+             rMonsterDMG := 20;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+               1 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+               2 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+             end;
+           end;
+  end;
+
+  imgMonster.Refresh;
+
+  //Note this code just animates moving the richedit to the middle of the collumns this is repeated later on for the right collumn
+  K := redPathOne.Left;
+
+  while K < 835 do
+    begin
+      redPathOne.Left := K;
+      inc(K, 5);
+
+      Sleep(10);
+    end;
+
+
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterHP.Visible := True;
+  imgHealth.Visible := True;
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+  lblMonsterDMG.Visible := True;
+  imgSword.Visible := True;
+
+  lblTutorial1.Visible := False;
+  lblTutorial2.Visible := True;
+  lblTutorial3.Visible := True;
+  lblTutorial4.Visible := True;
+  lblTutorial5.Visible := True;
+  lblTutorial6.Visible := True;
+
+  imgMonster.BringToFront;
+
+  //This summons the monster.
+  I := 0;
+
+  while I < 100 do
+    begin
+      imgMonster.Left := 572 - I;
+      imgMonster.Top := 461 - I;
+
+      imgMonster.Height := I * 2;
+      imgMonster.Width := I * 2;
+      imgMonster.Refresh;
+
+      Inc(I);
+
+      Sleep(10);
+    end;
+
+  btnEasyQuestion.Enabled := True;
+  btnMediumQuestion.Enabled := True;
+  btnHardQuestion.Enabled := True;
+  imgPotion.Enabled := True;
+end;
+
+procedure TfrmMathMagician.btnPathThreeClick(Sender: TObject);
+var
+  K, I, iMonster : Integer;
+begin
+  redPathOne.Enabled := False;
+  redPathOne.Visible := False;
+  btnPathOne.Enabled := False;
+  btnPathOne.Visible := False;
+
+  redPathTwo.Enabled := False;
+  redPathTwo.Visible := False;
+  btnPathTwo.Enabled := False;
+  btnPathTwo.Visible := False;
+
+  btnPathThree.Enabled := False;
+  btnPathThree.Visible := False;
+
+  iMonstersDefeated := 0;
+  sPath := redPathThree.Text;
+
+  cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+  iMonster := Random(2);
+
+  //This uses the path you chose to find what the question is supposed to be e.g. multiply or divide etc. This code is repeated for other buttons.
+  case cSymbol of
+    '+' :  begin
+             rMonsterHP := 40;
+             rMonsterDMG := 15;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+               1 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+               2 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+             end;
+           end;
+
+    '-' :  begin
+             rMonsterHP := 60;
+             rMonsterDMG := 10;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+               1 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+               2 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+             end;
+           end;
+
+    'x' :  begin
+             rMonsterHP := 30;
+             rMonsterDMG := 20;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+               1 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+               2 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+             end;
+           end;
+  end;
+
+  imgMonster.Refresh;
+
+  //Note this code just animates moving the richedit to the middle of the collumns this is repeated later on for the right collumn
+  K := redPathThree.Left;
+
+  while K > 835 do
+    begin
+      redPathThree.Left := K;
+      Dec(K, 5);
+
+      Sleep(10);
+    end;
+
+
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterHP.Visible := True;
+  imgHealth.Visible := True;
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+  lblMonsterDMG.Visible := True;
+  imgSword.Visible := True;
+
+  lblTutorial1.Visible := False;
+  lblTutorial2.Visible := True;
+  lblTutorial3.Visible := True;
+  lblTutorial4.Visible := True;
+  lblTutorial5.Visible := True;
+  lblTutorial6.Visible := True;
+
+  imgMonster.BringToFront;
+
+  //This summons the monster.
+  I := 0;
+
+  while I < 100 do
+    begin
+      imgMonster.Left := 572 - I;
+      imgMonster.Top := 461 - I;
+
+      imgMonster.Height := I * 2;
+      imgMonster.Width := I * 2;
+      imgMonster.Refresh;
+
+      Inc(I);
+
+      Sleep(10);
+    end;
+
+  btnEasyQuestion.Enabled := True;
+  btnMediumQuestion.Enabled := True;
+  btnHardQuestion.Enabled := True;
+  imgPotion.Enabled := True;
+end;
+
+procedure TfrmMathMagician.btnPathTwoClick(Sender: TObject);
+var
+  I, iMonster : Integer;
+begin
+
+  redPathOne.Enabled := False;
+  redPathOne.Visible := False;
+  btnPathOne.Enabled := False;
+  btnPathOne.Visible := False;
+
+  btnPathTwo.Enabled := False;
+  btnPathTwo.Visible := False;
+
+  redPathThree.Enabled := False;
+  redPathThree.Visible := False;
+  btnPathThree.Enabled := False;
+  btnPathThree.Visible := False;
+
+  iMonstersDefeated := 0;
+  sPath := redPathTwo.Text;
+
+  cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+  iMonster := Random(2);
+
+  //This uses the path you chose to find what the question is supposed to be e.g. multiply or divide etc. This code is repeated for other buttons.
+  case cSymbol of
+    '+' :  begin
+             rMonsterHP := 40;
+             rMonsterDMG := 15;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+               1 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+               2 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+             end;
+           end;
+
+    '-' :  begin
+             rMonsterHP := 60;
+             rMonsterDMG := 10;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+               1 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+               2 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+             end;
+           end;
+
+    'x' :  begin
+             rMonsterHP := 30;
+             rMonsterDMG := 20;
+
+             case iMonster of
+               0 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+               1 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+               2 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+             end;
+           end;
+  end;
+
+  imgMonster.Refresh;
+
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterHP.Visible := True;
+  imgHealth.Visible := True;
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+  lblMonsterDMG.Visible := True;
+  imgSword.Visible := True;
+
+  lblTutorial1.Visible := False;
+  lblTutorial2.Visible := True;
+  lblTutorial3.Visible := True;
+  lblTutorial4.Visible := True;
+  lblTutorial5.Visible := True;
+  lblTutorial6.Visible := True;
+
+  imgMonster.BringToFront;
+
+  //This summons the monster.
+  I := 0;
+
+  while I < 100 do
+    begin
+      imgMonster.Left := 572 - I;
+      imgMonster.Top := 461 - I;
+
+      imgMonster.Height := I * 2;
+      imgMonster.Width := I * 2;
+      imgMonster.Refresh;
+
+      Inc(I);
+
+      Sleep(10);
+    end;
+
+  btnEasyQuestion.Enabled := True;
+  btnMediumQuestion.Enabled := True;
+  btnHardQuestion.Enabled := True;
+  imgPotion.Enabled := True;
+end;
+
+procedure ButtonEnlarge;
+begin
+
+
+end;
+
+procedure TfrmMathMagician.btnLoginMouseEnter(Sender: TObject);
+begin
+  //This makes the button stand out when hovering over it
+  btnLogin.Height := btnLogin.Height + 2;
+  btnLogin.Width := btnLogin.Width + 2;
+  //This keeps the button in the middle of its original place when becoming bigger
+  btnLogin.Top := btnLogin.Top - 1;
+  btnLogin.Left := btnLogin.Left - 1;
+  btnLogin.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnLoginMouseLeave(Sender: TObject);
+begin
+  //This makes the button go back to normal
+  btnLogin.Height := btnLogin.Height - 2;
+  btnLogin.Width := btnLogin.Width - 2;
+  //Centres the button again
+  btnLogin.Top := btnLogin.Top + 1;
+  btnLogin.Left := btnLogin.Left + 1;
+  btnLogin.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnConfirmCharacterMouseEnter(Sender: TObject);
+begin
+  //This is the exact same as the login button this will also be repeated for the following few buttons
+  btnConfirmCharacter.Height := btnConfirmCharacter.Height + 2;
+  btnConfirmCharacter.Width := btnConfirmCharacter.Width + 2;
+  btnConfirmCharacter.Top := btnConfirmCharacter.Top - 1;
+  btnConfirmCharacter.Left := btnConfirmCharacter.Left - 1;
+  btnConfirmCharacter.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnConfirmCharacterMouseLeave(Sender: TObject);
+begin
+  //This is the exact same as the login button this will also be repeated for the following few buttons
+  btnConfirmCharacter.Height := btnConfirmCharacter.Height - 2;
+  btnConfirmCharacter.Width := btnConfirmCharacter.Width - 2;
+  btnConfirmCharacter.Top := btnConfirmCharacter.Top + 1;
+  btnConfirmCharacter.Left := btnConfirmCharacter.Left + 1;
+  btnConfirmCharacter.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnPathOneMouseEnter(Sender: TObject);
+begin
+  //Path one button enlarge
+  btnPathOne.Height := btnPathOne.Height + 2;
+  btnPathOne.Width := btnPathOne.Width + 2;
+  btnPathOne.Top := btnPathOne.Top - 1;
+  btnPathOne.Left := btnPathOne.Left - 1;
+  btnPathOne.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnPathOneMouseLeave(Sender: TObject);
+begin
+  //Path one button shrink
+  btnPathOne.Height := btnPathOne.Height - 2;
+  btnPathOne.Width := btnPathOne.Width - 2;
+  btnPathOne.Top := btnPathOne.Top + 1;
+  btnPathOne.Left := btnPathOne.Left + 1;
+  btnPathOne.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnPathTwoMouseEnter(Sender: TObject);
+begin
+  //Path two button enlarge
+  btnPathTwo.Height := btnPathTwo.Height + 2;
+  btnPathTwo.Width := btnPathTwo.Width + 2;
+  btnPathTwo.Top := btnPathTwo.Top - 1;
+  btnPathTwo.Left := btnPathTwo.Left - 1;
+  btnPathTwo.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnPathTwoMouseLeave(Sender: TObject);
+begin
+  //Path two button shrink
+  btnPathTwo.Height := btnPathTwo.Height - 2;
+  btnPathTwo.Width := btnPathTwo.Width - 2;
+  btnPathTwo.Top := btnPathTwo.Top + 1;
+  btnPathTwo.Left := btnPathTwo.Left + 1;
+  btnPathTwo.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnPlayAgainClick(Sender: TObject);
+begin
+  //Just resets everything
+  redPathOne.Left := 712;
+  redPathThree.Left := 936;
+
+  redPathOne.Visible := True;
+  redPathTwo.Visible := True;
+  redPathThree.Visible := True;
+
+  btnPathOne.Visible := True;
+  btnPathOne.Enabled := True;
+  btnPathTwo.Visible := True;
+  btnPathTwo.Enabled := True;
+  btnPathThree.Visible := True;
+  btnPathThree.Enabled := True;
+
+  btnEasyQuestion.Enabled := False;
+  btnMediumQuestion.Enabled := False;
+  btnHardQuestion.Enabled := False;
+
+  iPotionCount := 3;
+  lblPotionCount.Caption := IntToStr(iPotionCount);
+
+  pgcGame.ActivePageIndex := 1;
+end;
+
+procedure TfrmMathMagician.btnRegisterAccountClick(Sender: TObject);
+var
+ I : Integer;
+ sInfo, sUsernameCheck, sPasswordCheck, sFileInfo, sSavedUser : string;
+ bWrongPasswordChar, bWrongUserChar, bUserTaken : Boolean;
+const
+  CHARACTERS = ['A'..'Z', 'a'..'z', '0'..'9', '_'];
+  NOTALLOWEDINPASSWORD = [' ', '*'];
+begin
+  sInfo := edtRegisterUsername.Text + edtRegisterPassword.Text;
+  sUsernameCheck := edtRegisterUsername.Text;
+  sPasswordCheck := edtRegisterPassword.Text;
+  bWrongUserChar := False;
+  bWrongPasswordChar := False;
+  bUserTaken := False;
+
+  //This makes sure you have no illegal characters in your name
+  for I := 1 to Length(sUsernameCheck) do
+    begin
+      if NOT (sUsernameCheck[I] IN CHARACTERS) then
+        bWrongUserChar := True;
+    end;
+
+  //This makes sure you have no illegal characters in your password
+  for I := 1 to Length(sPasswordCheck) do
+    begin
+      if (sPasswordCheck[I] IN NOTALLOWEDINPASSWORD) then
+        bWrongPasswordChar := True;
+    end;
+
+  //This saves the information you wrote in the edit boxes or if there is no file creates it then saves
+  if FileExists('UsersAndPasswords.txt') = True then
+  begin
+    AssignFile(txtSavedAccounts, 'UsersAndPasswords.txt');
+
+    Reset(txtSavedAccounts);
+
+    while not Eof(txtSavedAccounts) do
+      begin
+        Readln(txtSavedAccounts, sFileInfo);
+
+        sSavedUser := Copy(sFileInfo, 1, Pos('*', sFileInfo) - 1);
+
+        if sSavedUser = sUsernameCheck then
+          begin
+            bUserTaken := True;
+          end
+      end;
+
+    CloseFile(txtSavedAccounts);
+  end;
+
+  //This saves the information you wrote in the edit boxes or if there is no file creates it then saves also checks if all the conditions are met first
+  if bUserTaken = True then
+    ShowMessage('This account username is already taken please select a new one!')
+  else
+  begin
+    if (Length(sUsernameCheck) > 3) AND (Length(sPasswordCheck) > 3) then
+    begin
+      if bWrongPasswordChar = True then
+        ShowMessage('Please dont use spaces or * in your password')
+        else
+        if bWrongUserChar = True then
+          ShowMessage('Please dont use any special characters or spaces in your username!')
+        else
+          begin
+            if FileExists('UsersAndPasswords.txt') = True then
+              begin
+                AssignFile(txtSavedAccounts, 'UsersAndPasswords.txt');
+                Append(txtSavedAccounts);
+
+                Writeln(txtSavedAccounts, edtRegisterUsername.Text + '*' + edtRegisterPassword.Text);
+                CloseFile(txtSavedAccounts);
+              end
+            else
+              begin
+                AssignFile(txtSavedAccounts, 'UsersAndPasswords.txt');
+                Rewrite(txtSavedAccounts);
+
+                Writeln(txtSavedAccounts, edtRegisterUsername.Text + '*' + edtRegisterPassword.Text);
+                CloseFile(txtSavedAccounts);
+              end;
+            ShowMessage('Account created!');
+            edtRegisterUsername.Text := '';
+            edtRegisterPassword.Text := '';
+          end;
+    end
+      else
+    ShowMessage('Please ensure your name and password is longer than 3 characters');
+  end
+end;
+
+//Next 2 procedures shows and hides the password when a checkbox is clicked
+procedure TfrmMathMagician.chkShowPasswordLoginClick(Sender: TObject);
+begin
+  if chkShowPasswordLogin.Checked = True then
+    edtPassword.PasswordChar := #0
+  else
+    edtPassword.PasswordChar := '*';
+end;
+
+procedure TfrmMathMagician.chkShowPasswordRegisterClick(Sender: TObject);
+begin
+  if chkShowPasswordRegister.Checked = True then
+    edtRegisterPassword.PasswordChar := #0
+  else
+    edtRegisterPassword.PasswordChar := '*';
+end;
+
+procedure TfrmMathMagician.cmbBossfightSongSelect(Sender: TObject);
+begin
+  mpAmbience.Close;
+
+  case cmbBossfightSong.ItemIndex of
+    0 : mpAmbience.FileName := 'NightmareKing.mp3';
+    1 : mpAmbience.FileName := 'SistersofBattle.mp3';
+    2 : mpAmbience.FileName := 'TheFinalBattle.mp3';
+  end;
+
+  mpAmbience.Open;
+  mpAmbience.Play;
+end;
+
+procedure TfrmMathMagician.cmbCurrentSongSelect(Sender: TObject);
+begin
+  mpAmbience.Close;
+
+  case cmbCurrentSong.ItemIndex of
+    0 : mpAmbience.FileName := 'Resurrections.mp3';
+    1 : mpAmbience.FileName := 'Awake.mp3';
+    2 : mpAmbience.FileName := 'HeartOfTheMountain.mp3';
+  end;
+
+  mpAmbience.Open;
+  mpAmbience.Play;
+
+  tRepeatMusic.Interval := mpAmbience.Length;
+end;
+
+procedure TfrmMathMagician.chkEnableBorderClick(Sender: TObject);
+begin
+  if chkEnableBorder.Checked = True then
+    begin
+      //This adds the border back should the user want that
+      frmMathMagician.BorderStyle := bsSizeable;
+      frmMathMagician.BorderWidth := 5;
+      //Extra note I have no idea whats happening here i just gave it random values and kept checking if it looked good enough
+      pgcGame.Top := -24;
+      pgcGame.Left := -4;
+      frmMathMagician.Width := pgcGame.Width + 18;
+      frmMathMagician.Height := pgcGame.Height + 20;
+    end
+  else
+    begin
+      //This removes border and centers the game again.
+      frmMathMagician.BorderStyle := bsNone;
+
+      pgcGame.Top := -24;
+      pgcGame.Left := -4;
+      frmMathMagician.Width := pgcGame.Width - 8;
+      frmMathMagician.Height := pgcGame.Height - 31;
+      frmMathMagician.BorderWidth := 0;
+    end;
+
+  frmMathMagician.Left := (frmMathMagician.Monitor.Width  - frmMathMagician.Width)  div 2;
+  frmMathMagician.Top  := (frmMathMagician.Monitor.Height - frmMathMagician.Height) div 2;
+end;
+
+procedure TfrmMathMagician.btnRegisterAccountMouseEnter(Sender: TObject);
+begin
+  //Register button enlarge
+  btnRegisterAccount.Height :=  btnRegisterAccount.Height + 2;
+  btnRegisterAccount.Width :=  btnRegisterAccount.Width + 2;
+  btnRegisterAccount.Top := btnRegisterAccount.Top - 1;
+  btnRegisterAccount.Left := btnRegisterAccount.Left - 1;
+  btnRegisterAccount.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnRegisterAccountMouseLeave(Sender: TObject);
+begin
+  btnRegisterAccount.Height :=  btnRegisterAccount.Height - 2;
+  btnRegisterAccount.Width :=  btnRegisterAccount.Width - 2;
+  btnRegisterAccount.Top := btnRegisterAccount.Top + 1;
+  btnRegisterAccount.Left := btnRegisterAccount.Left + 1;
+  btnRegisterAccount.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnPathThreeMouseEnter(Sender: TObject);
+begin
+  //Path three button enlarge
+  btnPathThree.Height := btnPathThree.Height + 2;
+  btnPathThree.Width := btnPathThree.Width + 2;
+  btnPathThree.Top := btnPathThree.Top - 1;
+  btnPathThree.Left := btnPathThree.Left - 1;
+  btnPathThree.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnPathThreeMouseLeave(Sender: TObject);
+begin
+  //Path three button shrink
+  btnPathThree.Height := btnPathThree.Height - 2;
+  btnPathThree.Width := btnPathThree.Width - 2;
+  btnPathThree.Top := btnPathThree.Top + 1;
+  btnPathThree.Left := btnPathThree.Left + 1;
+  btnPathThree.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnEasyQuestionMouseEnter(Sender: TObject);
+begin
+  //Easy question button enlarge
+  btnEasyQuestion.Height := btnEasyQuestion.Height + 2;
+  btnEasyQuestion.Width := btnEasyQuestion.Width + 2;
+  btnEasyQuestion.Top := btnEasyQuestion.Top - 1;
+  btnEasyQuestion.Left := btnEasyQuestion.Left - 1;
+  btnEasyQuestion.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnEasyQuestionMouseLeave(Sender: TObject);
+begin
+  //Easy question button shrink
+  btnEasyQuestion.Height := btnEasyQuestion.Height - 2;
+  btnEasyQuestion.Width := btnEasyQuestion.Width - 2;
+  btnEasyQuestion.Top := btnEasyQuestion.Top + 1;
+  btnEasyQuestion.Left := btnEasyQuestion.Left + 1;
+  btnEasyQuestion.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnMediumQuestionMouseEnter(Sender: TObject);
+begin
+  //Medium question button enlarge
+  btnMediumQuestion.Height := btnMediumQuestion.Height + 2;
+  btnMediumQuestion.Width := btnMediumQuestion.Width + 2;
+  btnMediumQuestion.Top := btnMediumQuestion.Top - 1;
+  btnMediumQuestion.Left := btnMediumQuestion.Left - 1;
+  btnMediumQuestion.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnMediumQuestionMouseLeave(Sender: TObject);
+begin
+  //Medium question button shrink
+  btnMediumQuestion.Height := btnMediumQuestion.Height - 2;
+  btnMediumQuestion.Width := btnMediumQuestion.Width - 2;
+  btnMediumQuestion.Top := btnMediumQuestion.Top + 1;
+  btnMediumQuestion.Left := btnMediumQuestion.Left + 1;
+  btnMediumQuestion.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnHardQuestionMouseEnter(Sender: TObject);
+begin
+  //Hard question button enlarge
+  btnHardQuestion.Height := btnHardQuestion.Height + 2;
+  btnHardQuestion.Width := btnHardQuestion.Width + 2;
+  btnHardQuestion.Top := btnHardQuestion.Top - 1;
+  btnHardQuestion.Left := btnHardQuestion.Left - 1;
+  btnHardQuestion.Font.Style := [fsBold];
+end;
+
+procedure TfrmMathMagician.btnHardQuestionMouseLeave(Sender: TObject);
+begin
+  //Hard question button shrink
+  btnHardQuestion.Height := btnHardQuestion.Height - 2;
+  btnHardQuestion.Width := btnHardQuestion.Width - 2;
+  btnHardQuestion.Top := btnHardQuestion.Top + 1;
+  btnHardQuestion.Left := btnHardQuestion.Left + 1;
+  btnHardQuestion.Font.Style := [];
+end;
+
+procedure TfrmMathMagician.btnEasyQuestionClick(Sender: TObject);
+var
+  iNum1, iNum2, iUserAnswer, iAnswer, K, Y, T, L, X, U, iBossfight, iRandomSound : Integer;
+begin
+  Randomize;
+  iNum1 := Random(10) + 1;
+  iNum2 := Random(10) + 1;
+  iAnswer := 0;
+
+  case cSymbol of
+    '+' : begin
+            iAnswer := iNum1 + iNum2;
+            cQuestionDisplaySymbol := '+';
+          end;
+    '-' : begin
+            iAnswer := iNum1 - iNum2;
+            cQuestionDisplaySymbol := '-';
+          end;
+    'x' : begin
+            //This just makes the multiplication part a bit easier instead of having it be between 50 and 100
+            iNum1 := Random(5) + 1;
+            iNum2 := Random(5) + 1;
+
+            iAnswer := iNum1 * iNum2;
+            cQuestionDisplaySymbol := 'x';
+          end;
+    'B' : begin
+            Randomize;
+            iBossfight := Random(3) + 1;
+
+            case iBossfight of
+              1 : begin
+                    iAnswer := iNum1 + iNum2;
+                    cQuestionDisplaySymbol := '+';
+                  end;
+              2 : begin
+                    iAnswer := iNum1 - iNum2;
+                    cQuestionDisplaySymbol := '-';
+                  end;
+              3 : begin
+                    //This just makes multiplication in the bossfight easier
+                    iNum1 := RandomRange(1, 5) + 1;
+                    iNum2 := RandomRange(1, 5) + 1;
+
+                    iAnswer := iNum1 * iNum2;
+                    cQuestionDisplaySymbol := 'x';
+                  end;
+            end;
+          end;
+  end;
+
+  iUserAnswer := StrToInt(InputBox('Hard Question', IntToStr(iNum1) + ' ' + cQuestionDisplaySymbol + ' ' + IntToStr(iNum2), ''));
+
+  if iUserAnswer = iAnswer then
+    begin
+      ShowMessage('Correct!');
+      rMonsterHP := Ceil(rMonsterHP - (rUserDMG * 1));
+
+      //Random damage sound effect
+      iRandomSound := Random(3) + 1;
+
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.Close;
+          case cSymbol of
+            '+' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'TreathHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'TreathHit3.mp3';
+                  end;
+            '-' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                  end;
+            'x' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                  end;
+            'B' : case iMonster of
+                    1 : begin
+                          case iRandomSound of
+                            0 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                            1 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                            2 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                          end;
+                        end;
+                    2 : begin
+                          case iRandomSound of
+                            0 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                            1 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                            2 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                          end;
+                        end;
+                    3 : begin
+                          case iRandomSound of
+                            0 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                          end;
+                        end;
+                  end;
+          end;
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end
+  else
+    begin
+      ShowMessage('Wrong answer!');
+      rUserHP := Ceil(rUserHP - (rMonsterDMG * 1));
+
+      //User damage sound effect
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.FileName := 'CharacterHit1.mp3';
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end;
+
+  if rMonsterHP <= 0 then
+    begin
+      if BossfightOrNot = True then
+        begin
+          ShowMessage('Congratulations you have won!');
+
+          tabGame.Enabled := False;
+          tabScore.Enabled := True;
+
+          imgVictoryOrDefeat.Picture.LoadFromFile('Victory.png');
+
+          pgcGame.ActivePageIndex := 3;
+
+          rScore := (rUserHP * 100) + (StrToFloat(lblPotionCount.Caption) * 50 * 100) + (iEnemies * 200);
+          lblScore.Caption := 'Score: ' + FloatToStr(rScore);
+        end
+      else
+        begin
+          //This is for the monster death animation
+          //Generates random Y movement
+          Y := RandomRange(-15, -5);
+          //K is for the loop length
+          K := 0;
+          //Generates random X movement
+          X := RandomRange(-10, 10);
+          //T and L values are to make sure that the starting position of the jump is always at the original location of the picture and not on a random location on the screen.
+          T := 361 - (Y * Y);
+          L := 472 - (Y * X);
+
+          while K < 40 do
+            begin
+              imgMonster.Top := T + (Y * Y);
+              imgMonster.Left := L + (Y * X);
+              imgMonster.Refresh;
+
+              lblMonsterDeathText.Caption := 'Noooo!';
+              lblMonsterDeathText.Top := imgMonster.Top - 30;
+              lblMonsterDeathText.Left := imgMonster.Left + 100;
+              imgMonster.Refresh;
+
+              Inc(Y);
+              inc(K);
+
+              Sleep(20);
+            end;
+
+          lblMonsterDeathText.Caption := '';
+
+          imgMonster.Top := 361;
+          imgMonster.Left := 472;
+
+          Inc(iMonstersDefeated);
+          cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+          Randomize;
+          //This gives random monster images
+          iMonster := Random(3) + 1;
+
+          case cSymbol of
+            '+' : begin
+                    rMonsterHP := 40;
+                    rMonsterDMG := 15;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+                      2 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+                      3 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+                    end;
+                  end;
+
+            '-' :  begin
+                    rMonsterHP := 60;
+                    rMonsterDMG := 10;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+                      2 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+                      3 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+                    end;
+                  end;
+
+            'x' : begin
+                    rMonsterHP := 30;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+                      2 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+                      3 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+                    end;
+                   end;
+
+            'B' : begin
+                    rMonsterHP := 80;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('Jeff.png');
+                      2 : imgMonster.Picture.LoadFromFile('Bloooob.png');
+                      3 : imgMonster.Picture.LoadFromFile('EiklerTheFireBorn.png');
+                    end;
+
+                    BossfightOrNot := True;
+
+                    //Allows you to change the bossfight song and disables normal song changes etc
+                    cmbBossfightSong.Enabled := True;
+                    cmbCurrentSong.Enabled := False;
+
+                    //This resets the timer and makes it select a new song but now its gonna be a bossfight song
+                    tRepeatMusic.Interval := 1;
+                  end;
+          end;
+
+          U := 0;
+
+          //This animates the monster moving toward the player
+          while U < 100 do
+            begin
+              imgMonster.Left := 572 - U;
+              imgMonster.Top := 461 - U;
+
+              imgMonster.Height := U * 2;
+              imgMonster.Width := U * 2;
+              imgMonster.Refresh;
+
+              Inc(U);
+
+              Sleep(10);
+            end;
+        end;
+    end;
+
+  if rUserHP <= 0 then
+    begin
+      ShowMessage('You have died!');
+      tabGame.Enabled := False;
+      tabScore.Enabled := True;
+      imgVictoryOrDefeat.Picture.LoadFromFile('Defeat.png');
+      pgcGame.ActivePageIndex := 3;
+    end;
+
+  lblUserHP.Caption := 'Health: ' + FloatToStr(rUserHP);
+  lblUserDMG.Caption := 'Damage: ' + FloatToStr(rUserDMG);
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+
+  lblTutorial2.Visible := False;
+  lblTutorial3.Visible := False;
+  lblTutorial4.Visible := False;
+  lblTutorial5.Visible := False;
+end;
+
+procedure TfrmMathMagician.btnHardQuestionClick(Sender: TObject);
+var
+  iNum1, iNum2, iUserAnswer, iAnswer, K, Y, T, L, X, U, iBossfight, iRandomSound : Integer;
+begin
+  Randomize;
+  iNum1 := RandomRange(25, 50) + 1;
+  iNum2 := RandomRange(25, 50) + 1;
+  iAnswer := 0;
+
+  case cSymbol of
+    '+' : begin
+            iAnswer := iNum1 + iNum2;
+            cQuestionDisplaySymbol := '+';
+          end;
+    '-' : begin
+            iAnswer := iNum1 - iNum2;
+            cQuestionDisplaySymbol := '-';
+          end;
+    'x' : begin
+            //This just makes the multiplication part a bit easier instead of having it be between 50 and 100
+            iNum1 := RandomRange(5, 15) + 1;
+            iNum2 := RandomRange(5, 15) + 1;
+
+            iAnswer := iNum1 * iNum2;
+            cQuestionDisplaySymbol := 'x';
+          end;
+    'B' : begin
+            Randomize;
+            iBossfight := Random(3) + 1;
+
+            case iBossfight of
+              1 : begin
+                    iAnswer := iNum1 + iNum2;
+                    cQuestionDisplaySymbol := '+';
+                  end;
+              2 : begin
+                    iAnswer := iNum1 - iNum2;
+                    cQuestionDisplaySymbol := '-';
+                  end;
+              3 : begin
+                    //This just makes multiplication in the bossfight easier
+                    iNum1 := RandomRange(10, 15) + 1;
+                    iNum2 := RandomRange(10, 15) + 1;
+
+                    iAnswer := iNum1 * iNum2;
+                    cQuestionDisplaySymbol := 'x';
+                  end;
+            end;
+          end;
+  end;
+
+  iUserAnswer := StrToInt(InputBox('Hard Question', IntToStr(iNum1) + ' ' + cQuestionDisplaySymbol + ' ' + IntToStr(iNum2), ''));
+
+  if iUserAnswer = iAnswer then
+    begin
+      ShowMessage('Correct!');
+      rMonsterHP := Ceil(rMonsterHP - (rUserDMG * 2));
+
+      //Random damage sound effect
+      iRandomSound := Random(3) + 1;
+
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.Close;
+          case cSymbol of
+            '+' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'TreathHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'TreathHit3.mp3';
+                  end;
+            '-' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                  end;
+            'x' : case iRandomSound of
+                    1 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                    2 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                    3 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                  end;
+            'B' : case iMonster of
+                    1 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'YglasirHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'YglasirHit2.mp3';
+                            3 : mpSoundEffects.FileName := 'YglasirHit3.mp3';
+                          end;
+                        end;
+                    2 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'SlimeHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'SlimeHit2.mp3';
+                            3 : mpSoundEffects.FileName := 'SlimeHit3.mp3';
+                          end;
+                        end;
+                    3 : begin
+                          case iRandomSound of
+                            1 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            2 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                            3 : mpSoundEffects.FileName := 'TreathHit1.mp3';
+                          end;
+                        end;
+                  end;
+          end;
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end
+  else
+    begin
+      ShowMessage('Wrong answer!');
+      rUserHP := Ceil(rUserHP - (rMonsterDMG * 2));
+
+      //User damage sound effect
+      if chkSoundEffects.Checked = True then
+        begin
+          mpSoundEffects.FileName := 'CharacterHit1.mp3';
+
+          mpSoundEffects.Open;
+          mpSoundEffects.Play;
+        end;
+    end;
+
+  if rMonsterHP <= 0 then
+    begin
+      if BossfightOrNot = True then
+        begin
+          ShowMessage('Congratulations you have won!');
+
+          tabGame.Enabled := False;
+          tabScore.Enabled := True;
+
+          imgVictoryOrDefeat.Picture.LoadFromFile('Victory.png');
+
+          pgcGame.ActivePageIndex := 3;
+
+          rScore := (rUserHP * 100) + (StrToFloat(lblPotionCount.Caption) * 50 * 100) + (iEnemies * 200);
+          lblScore.Caption := 'Score: ' + FloatToStr(rScore);
+        end
+      else
+        begin
+          //This is for the monster death animation
+          //Generates random Y movement
+          Y := RandomRange(-15, -5);
+          //K is for the loop length
+          K := 0;
+          //Generates random X movement
+          X := RandomRange(-10, 10);
+          //T and L values are to make sure that the starting position of the jump is always at the original location of the picture and not on a random location on the screen.
+          T := 361 - (Y * Y);
+          L := 472 - (Y * X);
+
+          while K < 40 do
+            begin
+              imgMonster.Top := T + (Y * Y);
+              imgMonster.Left := L + (Y * X);
+              imgMonster.Refresh;
+
+              lblMonsterDeathText.Caption := 'Noooo!';
+              lblMonsterDeathText.Top := imgMonster.Top - 30;
+              lblMonsterDeathText.Left := imgMonster.Left + 100;
+              imgMonster.Refresh;
+
+              Inc(Y);
+              inc(K);
+
+              Sleep(20);
+            end;
+
+          lblMonsterDeathText.Caption := '';
+
+          imgMonster.Top := 361;
+          imgMonster.Left := 472;
+
+          Inc(iMonstersDefeated);
+          cSymbol := sPath[6 + (8 * iMonstersDefeated)];
+          Randomize;
+          //This gives random monster images
+          iMonster := Random(3) + 1;
+
+          case cSymbol of
+            '+' : begin
+                    rMonsterHP := 40;
+                    rMonsterDMG := 15;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('WingedTreath.png');
+                      2 : imgMonster.Picture.LoadFromFile('LongTreath.png');
+                      3 : imgMonster.Picture.LoadFromFile('AdvancedTreath.png');
+                    end;
+                  end;
+
+            '-' :  begin
+                    rMonsterHP := 60;
+                    rMonsterDMG := 10;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('RedSlime.png');
+                      2 : imgMonster.Picture.LoadFromFile('BlueSlime.png');
+                      3 : imgMonster.Picture.LoadFromFile('GreenSlime.png');
+                    end;
+                  end;
+
+            'x' : begin
+                    rMonsterHP := 30;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('SpearYglasir.png');
+                      2 : imgMonster.Picture.LoadFromFile('RogueYglasir.png');
+                      3 : imgMonster.Picture.LoadFromFile('TravelingYglasir.png');
+                    end;
+                   end;
+
+            'B' : begin
+                    rMonsterHP := 80;
+                    rMonsterDMG := 20;
+
+                    case iMonster of
+                      1 : imgMonster.Picture.LoadFromFile('Jeff.png');
+                      2 : imgMonster.Picture.LoadFromFile('Bloooob.png');
+                      3 : imgMonster.Picture.LoadFromFile('EiklerTheFireBorn.png');
+                    end;
+
+                    BossfightOrNot := True;
+
+                    //Allows you to change the bossfight song and disables normal song changes in settings
+                    cmbBossfightSong.Enabled := True;
+                    cmbCurrentSong.Enabled := False;
+
+                    //This resets the timer and makes it select a new song but now its gonna be a bossfight song
+                    tRepeatMusic.Interval := 1;
+                  end;
+          end;
+
+          U := 0;
+
+          //This animates the monster moving toward the player
+          while U < 100 do
+            begin
+              imgMonster.Left := 572 - U;
+              imgMonster.Top := 461 - U;
+
+              imgMonster.Height := U * 2;
+              imgMonster.Width := U * 2;
+              imgMonster.Refresh;
+
+              Inc(U);
+
+              Sleep(10);
+            end;
+        end;
+    end;
+
+  if rUserHP <= 0 then
+    begin
+      ShowMessage('You have died!');
+      tabGame.Enabled := False;
+      tabScore.Enabled := True;
+      imgVictoryOrDefeat.Picture.LoadFromFile('Defeat.png');
+      pgcGame.ActivePageIndex := 3;
+    end;
+
+  lblUserHP.Caption := 'Health: ' + FloatToStr(rUserHP);
+  lblUserDMG.Caption := 'Damage: ' + FloatToStr(rUserDMG);
+  lblMonsterHP.Caption := 'Health: ' + FloatToStr(rMonsterHP);
+  lblMonsterDMG.Caption := 'Damage: ' + FloatToStr(rMonsterDMG);
+
+  lblTutorial2.Visible := False;
+  lblTutorial3.Visible := False;
+  lblTutorial4.Visible := False;
+  lblTutorial5.Visible := False;
+end;
+
+procedure TfrmMathMagician.btnConfirmCharacterClick(Sender: TObject);
+var
+  sYesOrNo : string;
+  K, iEquation : Integer;
+
+begin  sYesOrNo := InputBox('Are you sure you want to confirm your character?', 'Yes / No', 'Yes.');
+
+  if Copy(UpperCase(sYesOrNo), 0, 1) = 'Y' then
+    begin
+      imgHead.Picture := imgHeadPreview.Picture;
+      imgTorso.Picture := imgTorsoPreview.Picture;
+      imgLeggings.Picture := imgLeggingsPreview.Picture;
+      imgFace.Visible := True;
+      imgLeggings.BringToFront;
+
+        iEnemies := speEnemies.Value;
+        K := 0;
+        Randomize;
+
+      //This generates random equations for the three 'Path' choices and makes the last fight the boss fight
+      while K < (iEnemies - 1) do
+        begin
+          iEquation := Random(3) + 1;
+
+          case iEquation of
+            1 : redPathOne.Lines.Add('Sum: +');
+            2 : redPathOne.Lines.Add('Sum: -');
+            3 : redPathOne.Lines.Add('Sum: x');
+          end;
+
+          iEquation := Random(3) + 1;
+
+          case iEquation of
+            1 : redPathTwo.Lines.Add('Sum: +');
+            2 : redPathTwo.Lines.Add('Sum: -');
+            3 : redPathTwo.Lines.Add('Sum: x');
+          end;
+
+         iEquation := Random(3) + 1;
+
+          case iEquation of
+            1 : redPathThree.Lines.Add('Sum: +');
+            2 : redPathThree.Lines.Add('Sum: -');
+            3 : redPathThree.Lines.Add('Sum: x');
+          end;
+
+          inc(K);
+        end;
+
+        redPathOne.Lines.Add('Sum: Boss');
+        redPathTwo.Lines.Add('Sum: Boss');
+        redPathThree.Lines.Add('Sum: Boss');
+
+      pgcGame.ActivePageIndex := 2;
+
+      imgHead.BringToFront;
+
+      tabCharacter.Enabled := False;
+      tabGame.Enabled := True;
+    end;
+end;
+
+procedure TfrmMathMagician.CMBHeadSelect(Sender: TObject);
+begin
+
+  //On selecting a item it changes the preview picture to the selected item is repeated for the 2 other previews.
+  case CMBHead.ItemIndex + 1 of
+    1 : imgHeadPreview.Picture := imgNone.Picture;
+    2 : imgHeadPreview.Picture.LoadFromFile('Strawhat.png');
+    3 : imgHeadPreview.Picture.LoadFromFile('TopHat.png');
+  end;
+end;
+
+procedure TfrmMathMagician.CMBLeggingsSelect(Sender: TObject);
+begin
+  case CMBLeggings.ItemIndex + 1 of
+    1 : imgLeggingsPreview.Picture.LoadFromFile('Jeans.png');
+    2 : imgLeggingsPreview.Picture.LoadFromFile('BrownChinoPants.png');
+    3 : imgLeggingsPreview.Picture.LoadFromFile('Sweatpants.png');
+  end;
+end;
+
+procedure TfrmMathMagician.chkMusicClick(Sender: TObject);
+begin
+  if chkMusic.Checked = False then
+    mpAmbience.Stop
+  else
+    mpAmbience.Play;
+
+end;
+
+procedure TfrmMathMagician.CMBTorsoSelect(Sender: TObject);
+begin
+  case CMBTorso.ItemIndex of
+    0 : imgTorsoPreview.Picture.LoadFromFile('BlackShirt.png');
+    1 : imgTorsoPreview.Picture.LoadFromFile('WhiteShirt.png');
+    2 : imgTorsoPreview.Picture.LoadFromFile('Jacket.png');
+  end;
+end;
+
+procedure TfrmMathMagician.FormActivate(Sender: TObject);
+begin
+  iPotionCount := 3;
+
+  //This makes it so that you cant see the tabsheets in the game or any thing like that
+  pgcGame.Top := -24;
+  pgcGame.Left := -4;
+  frmMathMagician.Width := pgcGame.Width - 8;
+  frmMathMagician.Height := pgcGame.Height - 31;
+
+  //This removes the border and pretty much makes it so that you can't resize or move it.
+  frmMathMagician.BorderStyle := bsNone;
+  //This just centres the form in the middle of your screen.
+  frmMathMagician.Left := (frmMathMagician.Monitor.Width  - frmMathMagician.Width)  div 2;
+  frmMathMagician.Top  := (frmMathMagician.Monitor.Height - frmMathMagician.Height) div 2;
+
+  //This adds a custom font and applies it to all the necesarry areas
+  AddFontResource('poh_pixels.ttf');
+  lblMediumQuestion.Font.Name := 'Po$h Pixels';
+  lblMediumQuestion.Font.Size := 17;
+  lblHardQuestion.Font.Name := 'Po$h Pixels';
+  lblHardQuestion.Font.Size := 17;
+  lblEasyQuestion.Font.Name := 'Po$h Pixels';
+  lblEasyQuestion.Font.Size := 17;
+  lblUserHP.Font.Name := 'Po$h Pixels';
+  lblUserHP.Font.Size := 17;
+  lblUserDMG.Font.Name := 'Po$h Pixels';
+  lblUserDMG.Font.Size := 17;
+  lblMonsterHP.Font.Name := 'Po$h Pixels';
+  lblMonsterHP.Font.Size := 17;
+  lblMonsterDMG.Font.Name := 'Po$h Pixels';
+  lblMonsterDMG.Font.Size := 17;
+  lblTutorial1.Font.Name := 'Po$h Pixels';
+  lblTutorial1.Font.Size := 20;
+  lblTutorial2.Font.Name := 'Po$h Pixels';
+  lblTutorial2.Font.Size := 20;
+  lblTutorial3.Font.Name := 'Po$h Pixels';
+  lblTutorial3.Font.Size := 20;
+  lblTutorial4.Font.Name := 'Po$h Pixels';
+  lblTutorial4.Font.Size := 20;
+  lblTutorial5.Font.Name := 'Po$h Pixels';
+  lblTutorial5.Font.Size := 20;
+  lblTutorial6.Font.Name := 'Po$h Pixels';
+  lblTutorial6.Font.Size := 20;
+  lblEquationsInfo1.Font.Name := 'Po$h Pixels';
+  lblEquationsInfo1.Font.Size := 17;
+  lblEquationsInfo2.Font.Name := 'Po$h Pixels';
+  lblEquationsInfo2.Font.Size := 17;
+  lblCharacterTitle.Font.Name := 'Po$h Pixels';
+  lblCharacterTitle.Font.Size := 30;
+  lblSelectEquationsTitle.Font.Name := 'Po$h Pixels';
+  lblSelectEquationsTitle.Font.Size := 30;
+  lblFontSettings.Font.Name := 'Po$h Pixels';
+  lblFontSettings.Font.Size := 30;
+  lblSoundSettings.Font.Name := 'Po$h Pixels';
+  lblSoundSettings.Font.Size := 30;
+  lblScore.Font.Name := 'Po$h Pixels';
+  lblScore.Font.Size := 30;
+  btnConfirmCharacter.Font.Name := 'Po$h Pixels';
+  btnConfirmCharacter.Font.Size := 17;
+  btnEasyQuestion.Font.Name := 'Po$h Pixels';
+  btnEasyQuestion.Font.Size := 17;
+  btnMediumQuestion.Font.Name := 'Po$h Pixels';
+  btnMediumQuestion.Font.Size := 17;
+  btnHardQuestion.Font.Name := 'Po$h Pixels';
+  btnHardQuestion.Font.Size := 17;
+  btnPathOne.Font.Name := 'Po$h Pixels';
+  btnPathOne.Font.Size := 17;
+  btnPathTwo.Font.Name := 'Po$h Pixels';
+  btnPathTwo.Font.Size := 17;
+  btnPathThree.Font.Name := 'Po$h Pixels';
+  btnPathThree.Font.Size := 17;
+  btnPlayAgain.Font.Name := 'Po$h Pixels';
+  btnPlayAgain.Font.Size := 17;
+
+  iMonster := 0;
+
+  redPathOne.Enabled := False;
+  redPathTwo.Enabled := False;
+  redPathThree.Enabled := False;
+
+  //This chooses random music and repeats it
+  tRepeatMusic.Enabled := True;
+
+  //This is to help reduce images flashing while moving.
+  DoubleBuffered := True;
+
+  rUserHP := 100;
+  rUserDMG := 10;
+
+  pgcGame.ActivePageIndex := 0;
+
+  //Makes it so that the user cant access anything on a tab sheet they arent supposed to be on.
+  tabLogin.Enabled := True;
+  tabCharacter.Enabled := False;
+  tabGame.Enabled := False;
+  tabScore.Enabled := False;
+
+  lblMonsterHP.Visible := False;
+  lblMonsterDMG.Visible := False;
+
+  edtUser.SetFocus;
+
+  imgFace.Visible := False;
+end;
+
+
+procedure TfrmMathMagician.imgEscapeButtonClick(Sender: TObject);
+begin
+  if MessageDlg('Are you sure you want to quit?', mtConfirmation, [mbYes, mbNo], 0) = mrYes then
+    frmMathMagician.Close;
+end;
+
+procedure TfrmMathMagician.imgPotionClick(Sender: TObject);
+begin
+  if iPotionCount > 0 then
+    begin
+      rUserHP := rUserHP + 50;
+
+      //Just makes sure user hp doesnt pass the max amount(100);
+      if rUserHP > 100 then
+        rUserHP := 100;
+
+      lblUserHP.Caption := 'Health: ' + FloatToStr(rUserHP);
+
+      Dec(iPotionCount);
+      lblPotionCount.Caption := FloatToStr(iPotionCount);
+    end;
+end;
+
+procedure TfrmMathMagician.Button1Click(Sender: TObject);
+begin
+  pgcGame.ActivePageIndex := iPreviousActivePageNumber;
+end;
+
+procedure TfrmMathMagician.imgSettingsButtonClick(Sender: TObject);
+begin
+  iPreviousActivePageNumber := pgcGame.ActivePageIndex;
+  pgcGame.ActivePageIndex := 4;
+end;
+
+procedure TfrmMathMagician.tRepeatMusicTimer(Sender: TObject);
+  var
+  iRandomMusic : Integer;
+begin
+  //When one song is done select a new song
+  if chkMusic.Enabled = True then
+    begin
+    iRandomMusic := Random(3) + 1;
+
+    tRepeatMusic.Enabled := False;
+    mpAmbience.Close;
+
+    if BossfightOrNot = True then
+      begin
+        case iRandomMusic of
+         1 : mpAmbience.FileName := 'NightmareKing.mp3';
+         2 : mpAmbience.FileName := 'SistersOfBattle.mp3';
+         3 : mpAmbience.FileName := 'TheFinalBattle.mp3';
+        end;
+      end
+    else
+      begin
+        case iRandomMusic of
+         1 : mpAmbience.FileName := 'Resurrections.mp3';
+         2 : mpAmbience.FileName := 'HeartOfTheMountain.mp3';
+         3 : mpAmbience.FileName := 'Awake.mp3';
+        end;
+       end;
+    mpAmbience.Open;
+    mpAmbience.Play;
+
+    tRepeatMusic.Interval := mpAmbience.Length;
+    tRepeatMusic.Enabled := True;
+    end;
+end;
+
+end.

@@ -1,0 +1,14 @@
+program MathMagician;
+
+uses
+  Vcl.Forms,
+  MathMagicianp in 'MathMagicianp.pas' {frmMathMagician};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TfrmMathMagician, frmMathMagician);
+  Application.Run;
+end.
