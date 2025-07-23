@@ -1,0 +1,1694 @@
+unit Snake;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ComCtrls, Vcl.ExtCtrls, Vcl.StdCtrls, Math,
+  Vcl.Imaging.jpeg, Vcl.Samples.Spin, Vcl.Imaging.pngimage, Vcl.MPlayer;
+
+type
+  TfrmSnake = class(TForm)
+    pgcSnake: TPageControl;
+    tsMenu: TTabSheet;
+    tsCharacter: TTabSheet;
+    tsGame: TTabSheet;
+    btnControl: TButton;
+    RichEdit2: TRichEdit;
+    tsScore: TTabSheet;
+    sTile1s1: TShape;
+    tmTickRate: TTimer;
+    sTile1s2: TShape;
+    sTile1s3: TShape;
+    sTile1s4: TShape;
+    sTile1s5: TShape;
+    sTile1s6: TShape;
+    sTile1s7: TShape;
+    sTile1s8: TShape;
+    sTile1s9: TShape;
+    sTile1s10: TShape;
+    sTile1s11: TShape;
+    sTile1s12: TShape;
+    sTile1s13: TShape;
+    sTile1s14: TShape;
+    sTile1s15: TShape;
+    sTile1s16: TShape;
+    sTile1s17: TShape;
+    sTile1s18: TShape;
+    sTile1s19: TShape;
+    sTile1s20: TShape;
+    sTile2s20: TShape;
+    sTile2s1: TShape;
+    sTile2s2: TShape;
+    sTile2s3: TShape;
+    sTile2s4: TShape;
+    sTile2s5: TShape;
+    sTile2s6: TShape;
+    sTile2s7: TShape;
+    sTile2s8: TShape;
+    sTile2s9: TShape;
+    sTile2s10: TShape;
+    sTile2s11: TShape;
+    sTile2s12: TShape;
+    sTile2s13: TShape;
+    sTile2s14: TShape;
+    sTile2s15: TShape;
+    sTile2s16: TShape;
+    sTile2s17: TShape;
+    sTile2s18: TShape;
+    sTile2s19: TShape;
+    sTile3s20: TShape;
+    sTile3s1: TShape;
+    sTile3s2: TShape;
+    sTile3s3: TShape;
+    sTile3s4: TShape;
+    sTile3s5: TShape;
+    sTile3s6: TShape;
+    sTile3s7: TShape;
+    sTile3s8: TShape;
+    sTile3s9: TShape;
+    sTile3s10: TShape;
+    sTile3s11: TShape;
+    sTile3s12: TShape;
+    sTile3s13: TShape;
+    sTile3s14: TShape;
+    sTile3s15: TShape;
+    sTile3s16: TShape;
+    sTile3s17: TShape;
+    sTile3s18: TShape;
+    sTile3s19: TShape;
+    sTile4s20: TShape;
+    sTile4s1: TShape;
+    sTile4s2: TShape;
+    sTile4s3: TShape;
+    sTile4s4: TShape;
+    sTile4s5: TShape;
+    sTile4s6: TShape;
+    sTile4s7: TShape;
+    sTile4s8: TShape;
+    sTile4s9: TShape;
+    sTile4s10: TShape;
+    sTile4s11: TShape;
+    sTile4s12: TShape;
+    sTile4s13: TShape;
+    sTile4s14: TShape;
+    sTile4s15: TShape;
+    sTile4s16: TShape;
+    sTile4s17: TShape;
+    sTile4s18: TShape;
+    sTile4s19: TShape;
+    sTile5s20: TShape;
+    sTile5s1: TShape;
+    sTile5s2: TShape;
+    sTile5s3: TShape;
+    sTile5s4: TShape;
+    sTile5s5: TShape;
+    sTile5s6: TShape;
+    sTile5s7: TShape;
+    sTile5s8: TShape;
+    sTile5s9: TShape;
+    sTile5s10: TShape;
+    sTile5s11: TShape;
+    sTile5s12: TShape;
+    sTile5s13: TShape;
+    sTile5s14: TShape;
+    sTile5s15: TShape;
+    sTile5s16: TShape;
+    sTile5s17: TShape;
+    sTile5s18: TShape;
+    sTile5s19: TShape;
+    sTile6s20: TShape;
+    sTile6s1: TShape;
+    sTile6s2: TShape;
+    sTile6s3: TShape;
+    sTile6s4: TShape;
+    sTile6s5: TShape;
+    sTile6s6: TShape;
+    sTile6s7: TShape;
+    sTile6s8: TShape;
+    sTile6s9: TShape;
+    sTile6s10: TShape;
+    sTile6s11: TShape;
+    sTile6s12: TShape;
+    sTile6s13: TShape;
+    sTile6s14: TShape;
+    sTile6s15: TShape;
+    sTile6s16: TShape;
+    sTile6s17: TShape;
+    sTile6s18: TShape;
+    sTile6s19: TShape;
+    sTile7s20: TShape;
+    sTile7s1: TShape;
+    sTile7s2: TShape;
+    sTile7s3: TShape;
+    sTile7s4: TShape;
+    sTile7s5: TShape;
+    sTile7s6: TShape;
+    sTile7s7: TShape;
+    sTile7s8: TShape;
+    sTile7s9: TShape;
+    sTile7s10: TShape;
+    sTile7s11: TShape;
+    sTile7s12: TShape;
+    sTile7s13: TShape;
+    sTile7s14: TShape;
+    sTile7s15: TShape;
+    sTile7s16: TShape;
+    sTile7s17: TShape;
+    sTile7s18: TShape;
+    sTile7s19: TShape;
+    sTile8s20: TShape;
+    sTile8s1: TShape;
+    sTile8s2: TShape;
+    sTile8s3: TShape;
+    sTile8s4: TShape;
+    sTile8s5: TShape;
+    sTile8s6: TShape;
+    sTile8s7: TShape;
+    sTile8s8: TShape;
+    sTile8s9: TShape;
+    sTile8s10: TShape;
+    sTile8s11: TShape;
+    sTile8s12: TShape;
+    sTile8s13: TShape;
+    sTile8s14: TShape;
+    sTile8s15: TShape;
+    sTile8s16: TShape;
+    sTile8s17: TShape;
+    sTile8s18: TShape;
+    sTile8s19: TShape;
+    sTile9s20: TShape;
+    sTile9s1: TShape;
+    sTile9s2: TShape;
+    sTile9s3: TShape;
+    sTile9s4: TShape;
+    sTile9s5: TShape;
+    sTile9s6: TShape;
+    sTile9s7: TShape;
+    sTile9s8: TShape;
+    sTile9s9: TShape;
+    sTile9s10: TShape;
+    sTile9s11: TShape;
+    sTile9s12: TShape;
+    sTile9s13: TShape;
+    sTile9s14: TShape;
+    sTile9s15: TShape;
+    sTile9s16: TShape;
+    sTile9s17: TShape;
+    sTile9s18: TShape;
+    sTile9s19: TShape;
+    sTile10s20: TShape;
+    sTile10s1: TShape;
+    sTile10s2: TShape;
+    sTile10s3: TShape;
+    sTile10s4: TShape;
+    sTile10s5: TShape;
+    sTile10s6: TShape;
+    sTile10s7: TShape;
+    sTile10s8: TShape;
+    sTile10s9: TShape;
+    sTile10s10: TShape;
+    sTile10s11: TShape;
+    sTile10s12: TShape;
+    sTile10s13: TShape;
+    sTile10s14: TShape;
+    sTile10s15: TShape;
+    sTile10s16: TShape;
+    sTile10s17: TShape;
+    sTile10s18: TShape;
+    sTile10s19: TShape;
+    sTile11s20: TShape;
+    sTile11s1: TShape;
+    sTile11s2: TShape;
+    sTile11s3: TShape;
+    sTile11s4: TShape;
+    sTile11s5: TShape;
+    sTile11s6: TShape;
+    sTile11s7: TShape;
+    sTile11s8: TShape;
+    sTile11s9: TShape;
+    sTile11s10: TShape;
+    sTile11s11: TShape;
+    sTile11s12: TShape;
+    sTile11s13: TShape;
+    sTile11s14: TShape;
+    sTile11s15: TShape;
+    sTile11s16: TShape;
+    sTile11s17: TShape;
+    sTile11s18: TShape;
+    sTile11s19: TShape;
+    sTile12s20: TShape;
+    sTile12s1: TShape;
+    sTile12s2: TShape;
+    sTile12s3: TShape;
+    sTile12s4: TShape;
+    sTile12s5: TShape;
+    sTile12s6: TShape;
+    sTile12s7: TShape;
+    sTile12s8: TShape;
+    sTile12s9: TShape;
+    sTile12s10: TShape;
+    sTile12s11: TShape;
+    sTile12s12: TShape;
+    sTile12s13: TShape;
+    sTile12s14: TShape;
+    sTile12s15: TShape;
+    sTile12s16: TShape;
+    sTile12s17: TShape;
+    sTile12s18: TShape;
+    sTile12s19: TShape;
+    sTile13s20: TShape;
+    sTile13s1: TShape;
+    sTile13s2: TShape;
+    sTile13s3: TShape;
+    sTile13s4: TShape;
+    sTile13s5: TShape;
+    sTile13s6: TShape;
+    sTile13s7: TShape;
+    sTile13s8: TShape;
+    sTile13s9: TShape;
+    sTile13s10: TShape;
+    sTile13s11: TShape;
+    sTile13s12: TShape;
+    sTile13s13: TShape;
+    sTile13s14: TShape;
+    sTile13s15: TShape;
+    sTile13s16: TShape;
+    sTile13s17: TShape;
+    sTile13s18: TShape;
+    sTile13s19: TShape;
+    sTile14s20: TShape;
+    sTile14s1: TShape;
+    sTile14s2: TShape;
+    sTile14s3: TShape;
+    sTile14s4: TShape;
+    sTile14s5: TShape;
+    sTile14s6: TShape;
+    sTile14s7: TShape;
+    sTile14s8: TShape;
+    sTile14s9: TShape;
+    sTile14s10: TShape;
+    sTile14s11: TShape;
+    sTile14s12: TShape;
+    sTile14s13: TShape;
+    sTile14s14: TShape;
+    sTile14s15: TShape;
+    sTile14s16: TShape;
+    sTile14s17: TShape;
+    sTile14s18: TShape;
+    sTile14s19: TShape;
+    sTile15s20: TShape;
+    sTile15s1: TShape;
+    sTile15s2: TShape;
+    sTile15s3: TShape;
+    sTile15s4: TShape;
+    sTile15s5: TShape;
+    sTile15s6: TShape;
+    sTile15s7: TShape;
+    sTile15s8: TShape;
+    sTile15s9: TShape;
+    sTile15s10: TShape;
+    sTile15s11: TShape;
+    sTile15s12: TShape;
+    sTile15s13: TShape;
+    sTile15s14: TShape;
+    sTile15s15: TShape;
+    sTile15s16: TShape;
+    sTile15s17: TShape;
+    sTile15s18: TShape;
+    sTile15s19: TShape;
+    sTile16s20: TShape;
+    sTile16s1: TShape;
+    sTile16s2: TShape;
+    sTile16s3: TShape;
+    sTile16s4: TShape;
+    sTile16s5: TShape;
+    sTile16s6: TShape;
+    sTile16s7: TShape;
+    sTile16s8: TShape;
+    sTile16s9: TShape;
+    sTile16s10: TShape;
+    sTile16s11: TShape;
+    sTile16s12: TShape;
+    sTile16s13: TShape;
+    sTile16s14: TShape;
+    sTile16s15: TShape;
+    sTile16s16: TShape;
+    sTile16s17: TShape;
+    sTile16s18: TShape;
+    sTile16s19: TShape;
+    sTile17s20: TShape;
+    sTile17s1: TShape;
+    sTile17s2: TShape;
+    sTile17s3: TShape;
+    sTile17s4: TShape;
+    sTile17s5: TShape;
+    sTile17s6: TShape;
+    sTile17s7: TShape;
+    sTile17s8: TShape;
+    sTile17s9: TShape;
+    sTile17s10: TShape;
+    sTile17s11: TShape;
+    sTile17s12: TShape;
+    sTile17s13: TShape;
+    sTile17s14: TShape;
+    sTile17s15: TShape;
+    sTile17s16: TShape;
+    sTile17s17: TShape;
+    sTile17s18: TShape;
+    sTile17s19: TShape;
+    sTile18s20: TShape;
+    sTile18s1: TShape;
+    sTile18s2: TShape;
+    sTile18s3: TShape;
+    sTile18s4: TShape;
+    sTile18s5: TShape;
+    sTile18s6: TShape;
+    sTile18s7: TShape;
+    sTile18s8: TShape;
+    sTile18s9: TShape;
+    sTile18s10: TShape;
+    sTile18s11: TShape;
+    sTile18s12: TShape;
+    sTile18s13: TShape;
+    sTile18s14: TShape;
+    sTile18s15: TShape;
+    sTile18s16: TShape;
+    sTile18s17: TShape;
+    sTile18s18: TShape;
+    sTile18s19: TShape;
+    sTile19s20: TShape;
+    sTile19s1: TShape;
+    sTile19s2: TShape;
+    sTile19s3: TShape;
+    sTile19s4: TShape;
+    sTile19s5: TShape;
+    sTile19s6: TShape;
+    sTile19s7: TShape;
+    sTile19s8: TShape;
+    sTile19s9: TShape;
+    sTile19s10: TShape;
+    sTile19s11: TShape;
+    sTile19s12: TShape;
+    sTile19s13: TShape;
+    sTile19s14: TShape;
+    sTile19s15: TShape;
+    sTile19s16: TShape;
+    sTile19s17: TShape;
+    sTile19s18: TShape;
+    sTile19s19: TShape;
+    sTile20s20: TShape;
+    sTile20s1: TShape;
+    sTile20s2: TShape;
+    sTile20s3: TShape;
+    sTile20s4: TShape;
+    sTile20s5: TShape;
+    sTile20s6: TShape;
+    sTile20s7: TShape;
+    sTile20s8: TShape;
+    sTile20s9: TShape;
+    sTile20s10: TShape;
+    sTile20s11: TShape;
+    sTile20s12: TShape;
+    sTile20s13: TShape;
+    sTile20s14: TShape;
+    sTile20s15: TShape;
+    sTile20s16: TShape;
+    sTile20s17: TShape;
+    sTile20s18: TShape;
+    sTile20s19: TShape;
+    lblBody: TLabel;
+    lblHead: TLabel;
+    lblBoard: TLabel;
+    sBoard26: TShape;
+    sBoard27: TShape;
+    sFruit: TShape;
+    sBoard25: TShape;
+    sBoard24: TShape;
+    sBoard23: TShape;
+    sBoard22: TShape;
+    sBoard15: TShape;
+    sBoard20: TShape;
+    sBoard21: TShape;
+    sBoard19: TShape;
+    sBoard9: TShape;
+    sHead: TShape;
+    sBoard17: TShape;
+    sBoard18: TShape;
+    sBoard16: TShape;
+    sBody4: TShape;
+    sBody6: TShape;
+    sBoard13: TShape;
+    sBoard14: TShape;
+    sBoard12: TShape;
+    sBody3: TShape;
+    sBoard8: TShape;
+    sBoard11: TShape;
+    sBoard7: TShape;
+    sBoard10: TShape;
+    sBody5: TShape;
+    sBody2: TShape;
+    sBoard6: TShape;
+    sBody1: TShape;
+    sBoard5: TShape;
+    sBoard4: TShape;
+    sBoard3: TShape;
+    sBoard1: TShape;
+    sBoard2: TShape;
+    sBoard32: TShape;
+    sBoard31: TShape;
+    sBoard30: TShape;
+    sBoard28: TShape;
+    sBoard29: TShape;
+    lblDisplay: TLabel;
+    lblHeadBase: TLabel;
+    lblHeadBorder: TLabel;
+    cbHeadBase: TColorBox;
+    cbHeadBorder: TColorBox;
+    lblBodyBase: TLabel;
+    lblBodyBorder: TLabel;
+    lblBoardBase: TLabel;
+    cbBodyBase: TColorBox;
+    cbBodyBorder: TColorBox;
+    cbBoardBorder: TColorBox;
+    cbBoardBase: TColorBox;
+    lblBoardBorder: TLabel;
+    btnContinue: TButton;
+    lblFruitBase: TLabel;
+    lblFruitBorder: TLabel;
+    lblFruit: TLabel;
+    cbFruitBase: TColorBox;
+    cbFruitBorder: TColorBox;
+    btnStart: TButton;
+    Button1: TButton;
+    Image1: TImage;
+    Label1: TLabel;
+    Image2: TImage;
+    pgcMenu: TPageControl;
+    Menu: TTabSheet;
+    Button3: TButton;
+    cbInfantMode: TCheckBox;
+    cbDebug: TCheckBox;
+    Label2: TLabel;
+    btnIncLength: TButton;
+    spnTickrate: TSpinEdit;
+    lblTickrate: TLabel;
+    Button2: TButton;
+    lblTitle1: TLabel;
+    lblTitle2: TLabel;
+    lblTitle3: TLabel;
+    lblTitle4: TLabel;
+    tmAnimationLoop: TTimer;
+    lblDeath: TLabel;
+    Image3: TImage;
+    Image4: TImage;
+    e: TImage;
+    Shape1: TShape;
+    Shape2: TShape;
+    Shape3: TShape;
+    Shape4: TShape;
+    Button4: TButton;
+    Shape5: TShape;
+    Shape6: TShape;
+    Shape7: TShape;
+    Shape8: TShape;
+    Button5: TButton;
+    Label3: TLabel;
+    lblScoreNum: TLabel;
+    Button6: TButton;
+    Shape9: TShape;
+    Shape10: TShape;
+    Shape11: TShape;
+    Shape12: TShape;
+    Shape13: TShape;
+    Shape14: TShape;
+    Shape15: TShape;
+    Shape16: TShape;
+    Shape17: TShape;
+    Shape18: TShape;
+    Shape19: TShape;
+    Shape20: TShape;
+    Shape21: TShape;
+    Shape22: TShape;
+    Shape23: TShape;
+    Shape24: TShape;
+    Shape25: TShape;
+    Shape26: TShape;
+    Shape27: TShape;
+    Shape28: TShape;
+    Shape29: TShape;
+    Shape30: TShape;
+    Shape31: TShape;
+    Shape32: TShape;
+    Shape33: TShape;
+    Shape34: TShape;
+    Shape35: TShape;
+    Shape36: TShape;
+    Shape37: TShape;
+    Shape38: TShape;
+    Shape39: TShape;
+    Shape40: TShape;
+    Image5: TImage;
+    lblHighscoreTitlecard: TLabel;
+    lblHighscore1: TLabel;
+    lblHighscore2: TLabel;
+    lblHighscore3: TLabel;
+    lblHighscore4: TLabel;
+    lblHighscore5: TLabel;
+    lblHighscore6: TLabel;
+    lblHighscore7: TLabel;
+    lblHighscore8: TLabel;
+    lblHighscore9: TLabel;
+    lblHighscore10: TLabel;
+    lblNum1: TLabel;
+    lblNum2: TLabel;
+    lblNum3: TLabel;
+    lblNum4: TLabel;
+    lblNum5: TLabel;
+    lblNum6: TLabel;
+    lblNum7: TLabel;
+    lblNum8: TLabel;
+    lblNum9: TLabel;
+    lblNum10: TLabel;
+    btnReturn: TButton;
+    mpMusic: TMediaPlayer;
+    tmRepeatMusic: TTimer;
+    cbMusic: TCheckBox;
+    cbChangeSong: TComboBox;
+    cbRamp: TCheckBox;
+    spnRamp: TSpinEdit;
+    lblIncRamp: TLabel;
+    Label4: TLabel;
+    mpSoundEffects: TMediaPlayer;
+    cbSoundEffect: TCheckBox;
+    procedure FormActivate(Sender: TObject);
+    procedure btnControlKeyPress(Sender: TObject; var Key: Char);
+    procedure tmTickrateTimer(Sender: TObject);
+    procedure Moves;
+    procedure LengthIncrease;
+    procedure Start;
+    procedure Display;
+    procedure Death;
+    procedure Load;
+    procedure Save;
+    procedure MouseEnter;
+    procedure MouseLeave;
+    procedure btnExitClick(Sender: TObject);
+    procedure cbHeadBaseChange(Sender: TObject);
+    procedure cbHeadBorderChange(Sender: TObject);
+    procedure cbBoardBaseChange(Sender: TObject);
+    procedure cbBoardBorderChange(Sender: TObject);
+    procedure cbBodyBaseChange(Sender: TObject);
+    procedure cbBodyBorderChange(Sender: TObject);
+    procedure btnContinueClick(Sender: TObject);
+    procedure btnStartClick(Sender: TObject);
+    procedure cbFruitBaseChange(Sender: TObject);
+    procedure cbFruitBorderChange(Sender: TObject);
+    procedure btnControlKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure cbInfantModeClick(Sender: TObject);
+    procedure cbDebugClick(Sender: TObject);
+    procedure btnIncLengthClick(Sender: TObject);
+    procedure spnTickrateChange(Sender: TObject);
+    procedure Button2Click(Sender: TObject);
+    procedure Button1Click(Sender: TObject);
+    procedure tmAnimationLoopTimer(Sender: TObject);
+    procedure Button4Click(Sender: TObject);
+    procedure Button5Click(Sender: TObject);
+    procedure Button3KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure Button6Click(Sender: TObject);
+    procedure btnReturnClick(Sender: TObject);
+    procedure Button1KeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnContinueKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure btnReturnKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure tmRepeatMusicTimer(Sender: TObject);
+    procedure cbMusicClick(Sender: TObject);
+    procedure cbChangeSongChange(Sender: TObject);
+    procedure cbRampClick(Sender: TObject);
+    procedure Button1MouseEnter(Sender: TObject);
+    procedure Button1MouseLeave(Sender: TObject);
+    procedure btnContinueMouseEnter(Sender: TObject);
+    procedure btnContinueMouseLeave(Sender: TObject);
+    procedure btnStartMouseLeave(Sender: TObject);
+    procedure btnStartMouseEnter(Sender: TObject);
+    procedure Button5MouseEnter(Sender: TObject);
+    procedure Button5MouseLeave(Sender: TObject);
+    procedure Button4MouseEnter(Sender: TObject);
+    procedure Button4MouseLeave(Sender: TObject);
+    procedure Button6MouseEnter(Sender: TObject);
+    procedure Button6MouseLeave(Sender: TObject);
+
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frmSnake: TfrmSnake;
+  arrBoard : array[0..21, 0..21] of Integer;
+  arrMoves : array of Integer;
+  arrNames : array[1..10] of string;
+  arrScores : array[1..10] of Integer;
+  iMovement, iCounter, iHeadPosX, iHeadPosY, iTailPosX, iTailPosY, iTickrate, O, W, A, S, iBaseHeight, iPosModifier, iTitleDistance, iScore, iRampSpeed : Integer;
+  bDeletePrev, bPlacedFruit, bDoVisualFix, bPauseUndoFix, bDisablePgc, bCheck, bClose, bPaused, bDead : Boolean;
+  sColour, sButtonName : string;
+  tfLeaderboard : TextFile;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrmSnake.MouseEnter;
+begin
+  TButton(FindComponent(sButtonName)).Width := TButton(FindComponent(sButtonName)).Width + 2;
+  TButton(FindComponent(sButtonName)).Left := TButton(FindComponent(sButtonName)).Left - 1;
+  TButton(FindComponent(sButtonName)).Height := TButton(FindComponent(sButtonName)).Height + 2;
+  TButton(FindComponent(sButtonName)).Top := TButton(FindComponent(sButtonName)).Top - 1;
+  TButton(FindComponent(sButtonName)).Font.Size := TButton(FindComponent(sButtonName)).Font.Size + 1;
+  TButton(FindComponent(sButtonName)).Font.Style := [fsBold];
+end;
+
+procedure TfrmSnake.MouseLeave;
+begin
+  TButton(FindComponent(sButtonName)).Width := TButton(FindComponent(sButtonName)).Width - 2;
+  TButton(FindComponent(sButtonName)).Left := TButton(FindComponent(sButtonName)).Left + 1;
+  TButton(FindComponent(sButtonName)).Height := TButton(FindComponent(sButtonName)).Height - 2;
+  TButton(FindComponent(sButtonName)).Top := TButton(FindComponent(sButtonName)).Top + 1;
+  TButton(FindComponent(sButtonName)).Font.Size := TButton(FindComponent(sButtonName)).Font.Size - 1;
+  TButton(FindComponent(sButtonName)).Font.Style := [];
+end;
+
+procedure TfrmSnake.Save;
+var
+  I, K, J, iPlaceHolder : Integer;
+  sPlaceHolder : string;
+begin
+  for I := 1 to Length(arrScores) do
+    for K := 1 to Length(arrScores) do
+      begin
+        if arrScores[K] < arrScores[I] then
+          begin
+            iPlaceHolder := arrScores[I];
+            arrScores[I] := arrScores[K];
+            arrScores[K] := iPlaceHolder;
+
+            sPlaceHolder := arrNames[I];
+            arrNames[I] := arrNames[K];
+            arrNames[K] := sPlaceHolder;
+          end;
+      end;
+
+  AssignFile(tfLeaderboard, 'Leaderboard.txt');
+
+  Rewrite(tfLeaderboard);
+  for J := 1 to 10 do
+    begin
+      Writeln(tfLeaderboard, arrNames[J] + ',' + IntToStr(arrScores[J]));
+    end;
+
+  CloseFile(tfLeaderboard);
+
+end;
+
+procedure TfrmSnake.Load;
+var
+  sLine : string;
+  I, K, iPos : Integer;
+begin
+  AssignFile(tfLeaderboard, 'Leaderboard.txt');
+
+  K := 1;
+
+  if FileExists('Leaderboard.txt') = True then
+    begin
+      Reset(tfLeaderboard);
+      while NOT EoF(tfLeaderboard) do
+        begin
+          Readln(tfLeaderboard, sLine);
+
+          iPos := Pos(',', sLine);
+          arrNames[K] := Copy(sLine, 1, iPos - 1);
+          Delete(sLine, 1, iPos);
+
+          arrScores[K] := StrToInt(sLine);
+          inc(K);
+        end;
+
+      CloseFile(tfLeaderboard);
+    end
+  else
+    begin
+      Rewrite(tfLeaderboard);
+      for I := 1 to 10 do
+          Writeln(tfLeaderboard, 'Empty,0');
+
+      CloseFile(tfLeaderboard);
+      Load;
+    end;
+end;
+
+procedure TfrmSnake.Death;
+var
+  I, K : Integer;
+begin
+    for I := 1 to 20 do
+    for K := 1 to 20 do
+      begin
+        case arrBoard[I, K] of
+          0 : begin
+               TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := clGray;
+               TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := clMedGray;
+              end;
+          1 : begin
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := clSilver;
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := clBlack;
+              end;
+          2 : begin
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := clMoneyGreen;
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := clWhite;
+              end;
+        end;
+      end;
+
+  lblDeath.Visible := True;
+end;
+
+procedure TfrmSnake.Moves;
+var
+  I : Integer;
+begin
+  for I := Length(arrMoves) - 1 downto 1 do
+    begin
+      if I - 1 <= 0 then
+       arrMoves[I] := iMovement
+      else
+        arrMoves[I] := arrMoves[I - 1];
+    end;
+end;
+
+procedure TfrmSnake.btnReturnClick(Sender: TObject);
+begin
+  pgcSnake.ActivePageIndex := 2;
+
+end;
+
+procedure TfrmSnake.btnReturnKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    27 :  begin
+            if tmTickRate.Enabled = False then
+              bCheck := True;
+
+            tmTickRate.Enabled := False;
+            pgcMenu.Top := (frmSnake.Height - pgcMenu.Height) div 2;
+            pgcMenu.Left := (frmSnake.Width - pgcMenu.Width) div 2;
+            pgcSnake.Enabled := False;
+            Button3.SetFocus;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.spnTickrateChange(Sender: TObject);
+begin
+  iTickrate := spnTickrate.Value;
+
+  if tmTickRate.Enabled = False then
+    bCheck := True;
+
+  tmTickRate.Enabled := False;
+  tmTickRate.Interval := iTickrate;
+
+  if bCheck = True then
+    bCheck := False
+  else
+    tmTickRate.Enabled := True;
+end;
+
+procedure TfrmSnake.Display;
+var
+  I, K : Integer;
+begin
+  if tmTickRate.Enabled = False then
+    bPauseUndoFix := True
+  else
+  tmTickRate.Enabled := False;
+
+  for I := 1 to 20 do
+    for K := 1 to 20 do
+      begin
+        case arrBoard[I, K] of
+          0 : begin
+               TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := cbBoardBase.Selected;
+               TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := cbBoardBorder.Selected;
+              end;
+          1 : begin
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := cbBodyBase.Selected;
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := cbBodyBorder.Selected;
+              end;
+          2 : begin
+                if cbInfantMode.Checked = True then
+                  begin
+                    Image1.Left := TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Left;
+                    Image1.Top := TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Top;
+                  end;
+
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Brush.Color := cbFruitBase.Selected;
+                TShape(FindComponent('sTile' + IntToStr(I) + 's' + IntToStr(K))).Pen.Color := cbFruitBorder.Selected;
+              end;
+        end;
+      end;
+
+  if bPauseUndoFix = True then
+    begin
+      tmTickRate.Enabled := False;
+      bPauseUndoFix := False;
+    end
+  else
+    tmTickRate.Enabled := True;
+end;
+
+procedure TfrmSnake.Start;
+var
+  I, K, iRanX, iRanY : Integer;
+begin
+  if pgcSnake.Enabled = False then
+    begin
+      pgcSnake.Enabled := True;
+      bDisablePgc := True;
+    end;
+
+  tmTickRate.Enabled := False;
+  tmTickRate.Interval := 300;
+  spnTickrate.Value := 300;
+
+  for I := 1 to 20 do
+    for K := 1 to 20 do
+      arrBoard[I, K] := 0;
+
+  arrBoard[10, 10] := 1;
+  iHeadPosX := 10;
+  iHeadPosY := 10;
+  bDeletePrev := True;
+
+  iMovement := 1;
+  SetLength(arrMoves, 2);
+  iCounter := 2;
+
+  bPlacedFruit := False;
+
+  while bPlacedFruit = False do
+    begin
+      iRanX := RandomRange(1, 20);
+      iRanY := RandomRange(1, 20);
+
+      if arrBoard[iRanX, iRanY] = 1 then
+        bPlacedFruit := False
+      else
+        begin
+          arrBoard[iRanX, iRanY] := 2;
+
+          bPlacedFruit := True;
+        end;
+    end;
+
+  btnControl.SetFocus;
+
+  if bDisablePgc = True then
+    begin
+      pgcSnake.Enabled := False;
+      bDisablePgc := False;
+    end
+  else
+    tmTickrate.Enabled := True;
+end;
+
+procedure TfrmSnake.tmAnimationLoopTimer(Sender: TObject);
+begin
+  iPosModifier := round(iTitleDistance * sin(O * Pi / iTitleDistance));
+  lblTitle1.Top := iBaseHeight + iPosModifier;
+  O := ((O + 1) mod (2 * iTitleDistance));
+
+  iPosModifier := round(iTitleDistance * sin(W * Pi / iTitleDistance));
+  lblTitle2.Top := iBaseHeight + iPosModifier;
+  W := ((W + 1) mod (2 * iTitleDistance));
+
+  iPosModifier := round(iTitleDistance * sin(A * Pi / iTitleDistance));
+  lblTitle3.Top := iBaseHeight + iPosModifier;
+  A := ((A + 1) mod (2 * iTitleDistance));
+
+  iPosModifier := round(iTitleDistance * sin(S * Pi / iTitleDistance));
+  lblTitle4.Top := iBaseHeight + iPosModifier;
+  S := ((S + 1) mod (2 * iTitleDistance));
+end;
+
+procedure TfrmSnake.tmRepeatMusicTimer(Sender: TObject);
+  var
+  iRandomMusic : Integer;
+begin
+  //When one song is done select a new song
+  if cbMusic.Enabled = True then
+    begin
+      Randomize;
+      iRandomMusic := Random(6) + 1;
+
+      tmRepeatMusic.Enabled := False;
+      mpMusic.Close;
+
+      case iRandomMusic of
+        1 : mpMusic.FileName := 'Haunt Muskie.mp3';
+        2 : mpMusic.FileName := 'Subwoofer Lullaby.mp3';
+        3 : mpMusic.FileName := 'Funky Sundays.mp3';
+        4 : mpMusic.FileName := '8 Bit Adventure.mp3';
+        5 : mpMusic.FileName := 'The Sculpture.mp3';
+        6 : mpMusic.FileName := 'Heart Of The Mountain.mp3';
+      end;
+
+      mpMusic.Open;
+      mpMusic.Play;
+
+      tmRepeatMusic.Interval := mpMusic.Length;
+      tmRepeatMusic.Enabled := True;
+    end;
+
+end;
+
+procedure TfrmSnake.LengthIncrease;
+var
+  iStore : Integer;
+begin
+  Inc(iCounter);
+
+  if (cbRamp.Checked = True) AND ((tmTickRate.Interval - iRampSpeed) >= 100) then
+    begin
+      tmTickRate.Interval := tmTickRate.Interval - iRampSpeed;
+      spnTickrate.Value := tmTickRate.Interval;
+    end;
+
+  iStore := arrMoves[iCounter - 1];
+  SetLength(arrMoves, iCounter);
+  arrMoves[iCounter - 1] := iStore;
+  btnControl.SetFocus;
+
+  bDeletePrev := False;
+end;
+
+procedure TfrmSnake.btnContinueClick(Sender: TObject);
+begin
+  if bDead = False then
+    Display;
+
+  pgcSnake.ActivePageIndex := 2;
+
+  btnControl.SetFocus;
+end;
+
+procedure TfrmSnake.btnContinueKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    27 :  begin
+            if tmTickRate.Enabled = False then
+              bCheck := True;
+
+            tmTickRate.Enabled := False;
+            pgcMenu.Top := (frmSnake.Height - pgcMenu.Height) div 2;
+            pgcMenu.Left := (frmSnake.Width - pgcMenu.Width) div 2;
+            pgcSnake.Enabled := False;
+            Button3.SetFocus;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.btnContinueMouseEnter(Sender: TObject);
+begin
+  sButtonName := 'btnContinue';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.btnContinueMouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.btnControlKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    27 :  begin
+            if tmTickRate.Enabled = False then
+              bCheck := True;
+
+            tmTickRate.Enabled := False;
+            pgcMenu.Top := (frmSnake.Height - pgcMenu.Height) div 2;
+            pgcMenu.Left := (frmSnake.Width - pgcMenu.Width) div 2;
+            pgcSnake.Enabled := False;
+            Button3.SetFocus;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.btnControlKeyPress(Sender: TObject; var Key: Char);
+begin
+  case Key of
+    'w' : begin
+            if (arrMoves[1] = 3) AND NOT (iCounter = 2) then
+              iMovement := 3
+            else
+              iMovement := 1;
+          end;
+    'a' : begin
+            if (arrMoves[1] = 4) AND NOT (iCounter = 2) then
+              iMovement := 4
+            else
+              iMovement := 2;
+          end;
+    's' : begin
+            if (arrMoves[1] = 1) AND NOT (iCounter = 2) then
+              iMovement := 1
+            else
+              iMovement := 3;
+          end;
+    'd' : begin
+            if (arrMoves[1] = 2) AND NOT (iCounter = 2) then
+              iMovement := 2
+            else
+              iMovement := 4;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.btnIncLengthClick(Sender: TObject);
+begin
+  LengthIncrease;
+
+  btnControl.SetFocus;
+end;
+
+procedure TfrmSnake.btnStartClick(Sender: TObject);
+begin
+  lblDeath.Visible := False;
+  Start;
+
+  bDead := False;
+  btnControl.SetFocus;
+  Button4.Enabled := True;
+end;
+
+procedure TfrmSnake.btnStartMouseEnter(Sender: TObject);
+begin
+  sButtonName := 'btnStart';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.btnStartMouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.Button1Click(Sender: TObject);
+begin
+ pgcSnake.ActivePageIndex := 1;
+ btnContinue.SetFocus;
+end;
+
+procedure TfrmSnake.Button1KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    27 :  begin
+            if tmTickRate.Enabled = False then
+              bCheck := True;
+
+            tmTickRate.Enabled := False;
+            pgcMenu.Top := (frmSnake.Height - pgcMenu.Height) div 2;
+            pgcMenu.Left := (frmSnake.Width - pgcMenu.Width) div 2;
+            pgcSnake.Enabled := False;
+            Button3.SetFocus;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.Button1MouseEnter(Sender: TObject);
+begin
+  sButtonName := 'Button1';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.Button1MouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.Button2Click(Sender: TObject);
+begin
+  tmTickRate.Enabled := False;
+  tmAnimationLoop.Enabled := False;
+  Close;
+end;
+
+procedure TfrmSnake.Button3KeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case Key of
+    27 :  begin
+            pgcMenu.Left := -500;
+            pgcSnake.Enabled := True;
+            tmTickRate.Enabled := False;
+
+            if bCheck = True then
+              bCheck := False
+            else
+              tmTickRate.Enabled := True;
+
+            case pgcSnake.ActivePageIndex of
+              0 : Button1.SetFocus;
+              1 : btnContinue.SetFocus;
+              2 : btnControl.SetFocus;
+              3 : btnReturn.SetFocus;
+            end;
+          end;
+  end;
+end;
+
+procedure TfrmSnake.Button4Click(Sender: TObject);
+begin
+  if bPaused = False then
+    begin
+      tmTickRate.Enabled := False;
+      bPaused := True;
+      Button4.Caption := 'Unpause';
+    end
+  else
+    begin
+      tmTickRate.Enabled := True;
+      bPaused := False;
+      Button4.Caption := 'Pause';
+    end;
+
+  btnControl.SetFocus;
+end;
+
+procedure TfrmSnake.Button4MouseEnter(Sender: TObject);
+begin
+  sButtonName := 'Button4';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.Button4MouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.Button5Click(Sender: TObject);
+begin
+  tmTickRate.Enabled := False;
+  pgcSnake.ActivePageIndex := 1;
+  bPaused := True;
+  Button4.Caption := 'Unpause';
+end;
+
+procedure TfrmSnake.Button5MouseEnter(Sender: TObject);
+begin
+  sButtonName := 'Button5';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.Button5MouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.Button6Click(Sender: TObject);
+var
+  I, K, iWidest : Integer;
+begin
+  tmTickRate.Enabled := False;
+  pgcSnake.ActivePageIndex := 3;
+  bPaused := True;
+  Button4.Caption := 'Unpause';
+  iWidest := 0;
+
+
+  for I := 1 to 10 do
+    begin
+      TLabel(FindComponent('lblHighscore' + IntToStr(I))).Caption := arrNames[I] + ' ' + IntToStr(arrScores[I]);
+      TLabel(FindComponent('lblHighscore' + IntToStr(I))).Left := (pgcSnake.Width - TLabel(FindComponent('lblHighscore' + IntToStr(I))).Width) div 2 ;
+
+      if iWidest < TLabel(FindComponent('lblHighscore' + IntToStr(I))).Width then
+        iWidest := TLabel(FindComponent('lblHighscore' + IntToStr(I))).Width;
+    end;
+
+  lblHighscoreTitlecard.Left := (pgcSnake.Width - lblHighscoreTitlecard.Left) div 2 ;
+
+  for K := 1 to 10 do
+    begin
+      TLabel(FindComponent('lblNum' + IntToStr(K))).Left := (pgcSnake.Width div 2)  - (iWidest div 2) - 25;
+      TLabel(FindComponent('lblNum' + IntToStr(K))).Top := TLabel(FindComponent('lblHighscore' + IntToStr(K))).Top + TLabel(FindComponent('lblHighscore' + IntToStr(K))).Height - TLabel(FindComponent('lblNum' + IntToStr(K))).Height - 5;
+    end;
+end;
+
+procedure TfrmSnake.Button6MouseEnter(Sender: TObject);
+begin
+  sButtonName := 'Button6';
+  MouseEnter;
+end;
+
+procedure TfrmSnake.Button6MouseLeave(Sender: TObject);
+begin
+  MouseLeave;
+end;
+
+procedure TfrmSnake.btnExitClick(Sender: TObject);
+begin
+  pgcMenu.Left := -500;
+  pgcSnake.Enabled := True;
+  tmTickRate.Enabled := False;
+
+  if bCheck = True then
+    bCheck := False
+  else
+    tmTickRate.Enabled := True;
+
+  case pgcSnake.ActivePageIndex of
+    0 : Button1.SetFocus;
+    1 : btnContinue.SetFocus;
+    2 : btnControl.SetFocus;
+    3 : btnReturn.SetFocus;
+  end;
+end;
+
+procedure TfrmSnake.cbBoardBaseChange(Sender: TObject);
+var
+  I : Integer;
+begin
+  for I := 1 to 32 do
+    TShape(FindComponent('sBoard' + IntToStr(I))).Brush.Color := cbBoardBase.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbBoardBorderChange(Sender: TObject);
+var
+  I : Integer;
+begin
+  for I := 1 to 32 do
+    TShape(FindComponent('sBoard' + IntToStr(I))).Pen.Color := cbBoardBorder.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbBodyBaseChange(Sender: TObject);
+var
+  I : Integer;
+begin
+  for I := 1 to 6 do
+    TShape(FindComponent('sBody' + IntToStr(I))).Brush.Color := cbBodyBase.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbBodyBorderChange(Sender: TObject);
+var
+  I : Integer;
+begin
+  for I := 1 to 6 do
+    TShape(FindComponent('sBody' + IntToStr(I))).Pen.Color := cbBodyBorder.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbDebugClick(Sender: TObject);
+begin
+  if cbDebug.Checked = True then
+    begin
+      RichEdit2.Visible := True;
+      btnIncLength.Visible := True;
+      lblTickrate.Visible := True;
+      spnTickrate.Visible := True;
+      lblIncRamp.Visible := True;
+      spnRamp.Visible := True;
+    end
+  else
+    begin
+      RichEdit2.Visible := False;
+      btnIncLength.Visible := False;
+      lblTickrate.Visible := False;
+      spnTickrate.Visible := False;
+      lblIncRamp.Visible := False;
+      spnRamp.Visible := False;
+    end;
+
+  Button3.SetFocus;
+end;
+
+procedure TfrmSnake.cbFruitBaseChange(Sender: TObject);
+begin
+  sFruit.Brush.Color := cbFruitBase.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbFruitBorderChange(Sender: TObject);
+begin
+  sFruit.Pen.Color := cbFruitBorder.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbHeadBaseChange(Sender: TObject);
+begin
+  sHead.Brush.Color := cbHeadBase.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbHeadBorderChange(Sender: TObject);
+begin
+  sHead.Pen.Color := cbHeadBorder.Selected;
+
+  btnContinue.SetFocus
+end;
+
+procedure TfrmSnake.cbInfantModeClick(Sender: TObject);
+begin
+  Start;
+
+  if cbInfantMode.Checked = True then
+    begin
+      if cbInfantMode.Checked = True then
+        begin
+          Image2.Left := TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Left;
+          Image2.Top := TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Top;
+        end;
+
+      TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Brush.Color := cbHeadBase.Selected;
+      TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Pen.Color := cbHeadBorder.Selected;
+
+      Image1.Visible := True;
+      Image2.Visible := True;
+      Label1.Visible := True;
+    end
+  else
+    begin
+      Image1.Visible := False;
+      Image2.Visible := False;
+      Label1.Visible := False;
+    end;
+
+  if bDead = False then
+    Display;
+  Button3.SetFocus;
+
+  iScore := 0;
+  lblScoreNum.Caption := '0';
+end;
+
+procedure TfrmSnake.cbMusicClick(Sender: TObject);
+begin
+  if cbMusic.Checked = True then
+    begin
+      tmRepeatMusic.Interval := 1;
+    end
+  else
+      mpMusic.Stop;
+
+end;
+
+procedure TfrmSnake.cbRampClick(Sender: TObject);
+begin
+  Start;
+end;
+
+procedure TfrmSnake.cbChangeSongChange(Sender: TObject);
+begin
+  tmRepeatMusic.Enabled := False;
+
+  mpMusic.Stop;
+  mpMusic.Close;
+
+  case cbChangeSong.ItemIndex of
+    0 : mpMusic.FileName := 'Haunt Muskie.mp3';
+    1 : mpMusic.FileName := 'Subwoofer Lullaby.mp3';
+    2 : mpMusic.FileName := 'Funky Sundays.mp3';
+    3 : mpMusic.FileName := '8 Bit Adventure.mp3';
+    4 : mpMusic.FileName := 'The Sculpture.mp3';
+    5 : mpMusic.FileName := 'Heart Of The Mountain.mp3';
+  end;
+
+  mpMusic.Open;
+  mpMusic.Play;
+
+  tmRepeatMusic.Interval := mpMusic.Length;
+  tmRepeatMusic.Enabled := True;
+end;
+
+procedure TfrmSnake.FormActivate(Sender: TObject);
+var
+  I : Integer;
+begin
+  tmRepeatMusic.Interval := 1;
+
+  pgcSnake.Top := -24;
+  pgcSnake.Left := -4;
+  frmSnake.Width := pgcSnake.Width - 8;
+  frmSnake.Height := pgcSnake.Height - 31;
+
+  //This removes the border and pretty much makes it so that you can't resize or move it.
+  frmSnake.BorderStyle := bsNone;
+  //This just centres the form in the middle of your screen.
+  frmSnake.Left := (frmSnake.Monitor.Width  - frmSnake.Width)  div 2;
+  frmSnake.Top  := (frmSnake.Monitor.Height - frmSnake.Height) div 2;
+
+  pgcSnake.ActivePageIndex := 0;
+
+  iTickrate := 200;
+  tmTickRate.Enabled := False;
+
+  sButtonName := '';
+  iRampSpeed := 2;
+  bPauseUndoFix := False;
+  bDisablePgc := False;
+  bCheck := False;
+  bClose := False;
+  bPaused := False;
+  bDead := False;
+  O := 1;
+  W := 4;
+  A := 7;
+  S := 10;
+  iBaseHeight := lblTitle1.Top;
+  iTitleDistance := 16;
+
+  AddFontResource('VCR_OSD_MONO.ttf');
+  for I := 1 to 4 do
+    begin
+      TLabel(FindComponent('lblTitle' + IntToStr(I))).Font.Name := 'VCR OSD Mono';
+      TLabel(FindComponent('lblTitle' + IntToStr(I))).Font.Size := 120;
+    end;
+
+  lblDeath.Font.Name := 'VCR OSD Mono';
+  Label1.Font.Name := 'VCR OSD Mono';
+
+  lblDisplay.Font.Name := 'VCR OSD Mono';
+  lblDisplay.Font.Size := 15;
+  lblDisplay.Font.Color := clAqua;
+  lblBody.Font.Name := 'VCR OSD Mono';
+  lblBody.Font.Color:= clAqua;
+  lblBodyBase.Font.Name := 'VCR OSD Mono';
+  lblBodyBase.Font.Color:= clAqua;
+  lblBodyBorder.Font.Name := 'VCR OSD Mono';
+  lblBodyBorder.Font.Color:= clAqua;
+  lblHead.Font.Name := 'VCR OSD Mono';
+  lblHead.Font.Color:= clAqua;
+  lblHeadBase.Font.Name := 'VCR OSD Mono';
+  lblHeadBase.Font.Color:= clAqua;
+  lblHeadBorder.Font.Name := 'VCR OSD Mono';
+  lblHeadBorder.Font.Color:= clAqua;
+  lblFruit.Font.Name := 'VCR OSD Mono';
+  lblFruit.Font.Color:= clAqua;
+  lblFruitBase.Font.Name := 'VCR OSD Mono';
+  lblFruitBase.Font.Color:= clAqua;
+  lblFruitBorder.Font.Name := 'VCR OSD Mono';
+  lblFruitBorder.Font.Color:= clAqua;
+  lblBoard.Font.Name := 'VCR OSD Mono';
+  lblBoard.Font.Color:= clAqua;
+  lblBoardBase.Font.Name := 'VCR OSD Mono';
+  lblBoardBase.Font.Color:= clAqua;
+  lblBoardBorder.Font.Name := 'VCR OSD Mono';
+  lblBoardBorder.Font.Color:= clAqua;
+
+
+  tmAnimationLoop.Interval := 50;
+
+  Load;
+  Save;
+
+  Button1.SetFocus;
+end;
+
+procedure TfrmSnake.tmTickrateTimer(Sender: TObject);
+var
+  I, L, iRanX, iRanY, iPrevX, iPrevY, M : Integer;
+  bPlacedFruit, bDoSave : Boolean;
+begin
+  iPrevX := iHeadPosX;
+  iPrevY := iHeadPosY;
+  bDoSave := False;
+
+  case iMovement of
+    1 : begin       //w
+          Moves;
+
+          iHeadPosY := iHeadPosY - 1;
+        end;
+    2 : begin       //a
+          Moves;
+
+          iHeadPosX := iHeadPosX - 1;
+        end;
+    3 : begin       //s
+          Moves;
+
+          iHeadPosY := iHeadPosY + 1;
+        end;
+    4 : begin       //d
+          Moves;
+
+          iHeadPosX := iHeadPosX + 1;
+        end;
+  end;
+
+  iTailPosX := iHeadPosX;
+  iTailPosY := iHeadPosY;
+
+      for L := 0 to Length(arrMoves) - 1 do
+        case arrMoves[L] of
+          1 : begin    //w
+                iTailPosY := iTailPosY + 1;
+              end;
+          2 : begin    //a
+                iTailPosX := iTailPosX + 1;
+              end;
+          3 : begin    //s
+                iTailPosY := iTailPosY - 1;
+              end;
+          4 : begin    //d
+                iTailPosX := iTailPosX - 1;
+              end;
+        end;
+
+  if arrBoard[iHeadPosX, iHeadPosY] = 2 then
+    begin
+
+    end
+  else
+    arrBoard[iTailPosX, iTailPosY] := 0;
+
+  if (iHeadPosX > 20) OR (iHeadPosX < 1) OR (iHeadPosY > 20) OR (iHeadPosY < 1) OR (arrBoard[iHeadPosX, iHeadPosY] = 1) then
+    begin
+      tmTickrate.Enabled := False;
+      iCounter := 2;
+      Death;
+
+      bDead := True;
+
+      TShape(FindComponent('sTile' + IntToStr(iTailPosX) + 's' + IntToStr(iTailPosY))).Brush.Color := clSilver;
+      TShape(FindComponent('sTile' + IntToStr(iTailPosX) + 's' + IntToStr(iTailPosY))).Pen.Color := clBlack;
+
+      TShape(FindComponent('sTile' + IntToStr(iPrevX) + 's' + IntToStr(iPrevY))).Brush.Color := clWindowFrame;
+      TShape(FindComponent('sTile' + IntToStr(iPrevX) + 's' + IntToStr(iPrevY))).Pen.Color := clBlack;
+
+      for M := 1 to 10 do
+        if iScore > arrScores[M] then
+            bDoSave := True;
+
+
+      if bDoSave = True then
+        begin
+          arrScores[10] := iScore;
+          arrNames[10] := UpperCase(InputBox('Enter name.', 'You have the qualifications to be on the leaderboard! Enter a name.', 'Someone'));
+          Save;
+        end;
+
+      Button4.Enabled := False;
+      lblScoreNum.Caption := '0';
+      lblScoreNum.Left := Label3.Left + ((Label3.Width - lblScoreNum.Width) div 2);
+    end
+  else
+    begin
+      if arrBoard[iHeadPosX, iHeadPosY] = 2 then
+        begin
+          LengthIncrease;
+
+          bPlacedFruit := False;
+          bDeletePrev := False;
+
+          iScore := StrToInt(lblScoreNum.Caption) + 50;
+
+          lblScoreNum.Caption := IntToStr(iScore);
+          lblScoreNum.Left := Label3.Left + ((Label3.Width - lblScoreNum.Width) div 2);
+
+          if cbSoundEffect.Checked = True then
+            begin
+              mpSoundEffects.Close;
+
+              mpSoundEffects.FileName := 'Nom.mp3';
+
+              mpSoundEffects.Open;
+              mpSoundEffects.Play;
+            end;
+
+          while bPlacedFruit = False do
+            begin
+              iRanX := RandomRange(1, 20);
+              iRanY := RandomRange(1, 20);
+
+              if arrBoard[iRanX, iRanY] = 1 then
+                bPlacedFruit := False
+              else
+                begin
+                  arrBoard[iRanX, iRanY] := 2;
+
+                  bPlacedFruit := True;
+                end;
+            end;
+        end;
+
+      if (bDeletePrev = True) then
+        begin
+         arrBoard[iTailPosX, iTailPosY] := 0;
+        end
+      else
+        bDeletePrev := True;
+
+      arrBoard[iHeadPosX, iHeadPosY] := 1;
+
+      Display;
+
+      if cbInfantMode.Checked = True then
+        begin
+          Image2.Left := TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Left;
+          Image2.Top := TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Top;
+        end;
+
+      TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Brush.Color := cbHeadBase.Selected;
+      TShape(FindComponent('sTile' + IntToStr(iHeadPosX) + 's' + IntToStr(iHeadPosY))).Pen.Color := cbHeadBorder.Selected;
+
+      if cbDebug.Checked = True then
+        begin
+          RichEdit2.Clear;
+          for I := 1 to Length(arrMoves) do
+            RichEdit2.Lines.Add(IntToStr(arrMoves[I]));
+        end;
+    end;
+end;
+
+end.
+
+
+
