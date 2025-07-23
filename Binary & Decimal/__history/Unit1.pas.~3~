@@ -1,0 +1,63 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Math;
+
+type
+  TForm1 = class(TForm)
+    btnDecimalConversion: TButton;
+    edtDecimalInput: TEdit;
+    RichEdit1: TRichEdit;
+    edtBinaryInput: TEdit;
+    btnBinaryConversion: TButton;
+    lblBinary: TLabel;
+    lblDecimal: TLabel;
+    procedure btnBinaryConversionClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnBinaryConversionClick(Sender: TObject);
+var
+  sInput : string;
+  K, iExponent, iNumber, iDecimal, iMultiply : Integer;
+  sngMultiply : Single;
+const
+  AVALIABLENUMS = [0..1];
+begin
+  sInput := edtBinaryInput.Text;
+  //This going to be used to calculate the decimal from the first binary number all the way to the last.
+  iExponent := Length(sInput) - 1;
+  //Initializing the decimal number
+  iDecimal := 0;
+  
+  for K := 1 to Length(sInput) do
+    begin
+      iNumber := StrToInt(Copy(sInput, K, 1));
+      ShowMessage(IntToStr(iExponent));
+
+      iMultiply := Power(2, iExponent);
+
+      
+      //To use the Power as below you need to add the math function at the top!
+      iDecimal := iDecimal + (iNumber);
+      //Decrements the exponent for the following number
+      Dec(iExponent);
+    end;
+  ShowMessage(IntToStr(iDecimal));
+
+end;
+
+end.

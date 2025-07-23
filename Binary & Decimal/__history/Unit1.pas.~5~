@@ -1,0 +1,70 @@
+unit Unit1;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ComCtrls, Math;
+
+type
+  TForm1 = class(TForm)
+    btnDecimalConversion: TButton;
+    edtDecimalInput: TEdit;
+    redOutput: TRichEdit;
+    edtBinaryInput: TEdit;
+    btnBinaryConversion: TButton;
+    lblBinary: TLabel;
+    lblDecimal: TLabel;
+    procedure btnBinaryConversionClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TForm1.btnBinaryConversionClick(Sender: TObject);
+var
+  sInput : string;
+  K, iExponent, iNumber, iDecimal, iMultiply : Integer;
+  sngMultiply : Single;
+begin
+
+  sInput := edtBinaryInput.Text;
+
+  if NOT (sInput[1] IN ['0', '1']) then
+    ShowMessage('Please only enter Binary numbers (1 & 0).')
+  else
+  begin
+    //This going to be used to calculate the decimal from the first binary number all the way down to the last number.
+    iExponent := Length(sInput) - 1;
+    //Initializing the decimal number.
+    iDecimal := 0;
+
+    for K := 1 to Length(sInput) do
+      begin
+        iNumber := StrToInt(Copy(sInput, K, 1));
+        ShowMessage(IntToStr(iExponent));
+        //To use the Power as below you need to add the math function at the top!
+        //Ceil is just to make sure the answer is a integer.
+        iMultiply := Ceil(Power(2, iExponent));
+
+        iDecimal := iDecimal + (iNumber * iMultiply);
+        //Decrements the exponent for the following number.
+        Dec(iExponent);
+      end;
+
+    //Output
+    redOutput.Lines.Clear;
+    redOutput.Lines.Add('Binary Input: ' + sInput);
+    redOutput.Lines.Add('Decimal Output: ' + IntToStr(iDecimal));
+  end;
+end;
+
+end.
