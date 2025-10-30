@@ -1,17 +1,16 @@
 # Old projects.
-Some old projects, there are some bugs but I don't have access to delphi so i cant fix them.
+Some old projects most of them have some fun features and I learnt a lot doing each one! There are some bugs in some of the older ones but I don't have access to delphi so I cant fix them.
 I think _MathMagician_, _Snake_ and _Connect_4_ have incorrect file handeling so they dont properly close the textfiles they create/interact with because I didn't know how to properly handle files when I made those. Some of the programs might throw sound errors, due to missing mp3 files, but should still work.
 
-The property management software and _MathMagician_ were both made specifically for my IT class project (PAT) in highschool.
-
 ## Property management software.
-A pretty fun project for my grade 12 PAT. It is a property management program with the main focus being a (cubey) map that links with the database using a set of coordinates. This was a project for my highschool class.
+A pretty fun project. It is a property management program with the main focus being a (cubey) map that links with the database using a set of coordinates.
 
 ### Features
 * Lots of validation, and if something is invalid the textbox turns red
 * User passwords are salted and hashed using SHA-256.
 * User settings with themes that change each form
 * Lots of admin features
+* The program uses a Relational Database linking multiple tables using public & private keys and linking with external data for the map.
 * Everything in the application is resizable.
 * The project uses some custom classes.
 * This was the first time I played around with dynamic object creation.
